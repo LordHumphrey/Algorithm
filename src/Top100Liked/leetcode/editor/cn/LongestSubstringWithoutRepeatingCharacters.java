@@ -46,12 +46,14 @@ import java.util.Set;
 public class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
-        System.out.println(solution.lengthOfLongestSubstring("dvdf"));
+        System.out.println(solution.lengthOfLongestSubstring("abcabcbb"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLongestSubstring(String s) {
             char[] charArray = s.toCharArray();
+            int result = 0, right = 0, length = charArray.length;
             if (charArray.length == 0) {
                 return 0;
             } else if (charArray.length == 1) {
@@ -59,19 +61,17 @@ public class LongestSubstringWithoutRepeatingCharacters {
             } else if (s.isBlank()) {
                 return 1;
             }
-            int result = 0, right = -1;
             Set<Character> mySet = new HashSet<>();
             for (int i = 0; i < charArray.length; i++) {
                 if (i != 0) {
                     mySet.remove(charArray[i - 1]);
                 }
-                while (right < charArray.length - 1 && !mySet.contains(charArray[right + 1])) {
-                    mySet.add(charArray[right + 1]);
+                while (right < length && !mySet.contains(charArray[right])) {
+                    mySet.add(charArray[right]);
                     right++;
                 }
-                result = Math.max(result, right - i + 1);
+                result = Math.max(result, right - i);
             }
-
             return result;
         }
     }

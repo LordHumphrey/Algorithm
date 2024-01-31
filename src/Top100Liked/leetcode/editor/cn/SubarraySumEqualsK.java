@@ -30,17 +30,35 @@
 //
 // Related Topics 数组 哈希表 前缀和 👍 2235 👎 0
 
-// package Top100Liked.leetcode.editor.cn;
-// public class SubarraySumEqualsK{
-//    public static void main(String[] args) {
-//         Solution solution = new SubarraySumEqualsK().new Solution();
-//    }
-//    //leetcode submit region begin(Prohibit modification and deletion)
-// class Solution {
-//    public int subarraySum(int[] nums, int k) {
-//
-//    }
-// }
-//// leetcode submit region end(Prohibit modification and deletion)
-//
-// }
+package Top100Liked.leetcode.editor.cn;
+
+import java.util.HashMap;
+
+public class SubarraySumEqualsK {
+    public static void main(String[] args) {
+        Solution solution = new SubarraySumEqualsK().new Solution();
+        System.out.println(solution.subarraySum(new int[]{1, 2, 3}, 3));
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int subarraySum(int[] nums, int k) {
+            int result = 0, length = nums.length, preSum = 0;
+            if (length == 0) {
+                return result;
+            }
+            HashMap<Integer, Integer> hashMap = new HashMap<>();
+            hashMap.put(0, 1);
+            for (int num : nums) {
+                preSum += num;
+                if (hashMap.containsKey(preSum - k)) {
+                    result += hashMap.get(preSum - k);
+                }
+                hashMap.put(preSum, hashMap.getOrDefault(preSum, 0) + 1);
+            }
+            return result;
+        }
+    }
+// leetcode submit region end(Prohibit modification and deletion)
+
+}

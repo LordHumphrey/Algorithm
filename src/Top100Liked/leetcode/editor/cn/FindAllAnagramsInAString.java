@@ -36,17 +36,49 @@
 //
 // Related Topics 哈希表 字符串 滑动窗口 👍 1372 👎 0
 
-// package Top100Liked.leetcode.editor.cn;
-// public class FindAllAnagramsInAString{
-//    public static void main(String[] args) {
-//         Solution solution = new FindAllAnagramsInAString().new Solution();
-//    }
-//    //leetcode submit region begin(Prohibit modification and deletion)
-// class Solution {
-//    public List<Integer> findAnagrams(String s, String p) {
-//
-//    }
-// }
-//// leetcode submit region end(Prohibit modification and deletion)
+package Top100Liked.leetcode.editor.cn;
 
-// }
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FindAllAnagramsInAString {
+    public static void main(String[] args) {
+        Solution solution = new FindAllAnagramsInAString().new Solution();
+        System.out.println(solution.findAnagrams("cbaebabacd", "abc"));
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public List<Integer> findAnagrams(String s, String p) {
+            char[] sCharArray = s.toCharArray(), pCharArray = p.toCharArray();
+            int right = 0, sLength = sCharArray.length, pLength = pCharArray.length;
+            List<Integer> result = new ArrayList<>();
+            if (pLength > sLength || 0 == sLength) {
+                return result;
+            }
+            int[] sArr = new int[26], pArr = new int[26];
+            for (int i = 0; i < pLength; i++) {
+                pArr[pCharArray[i] - 'a']++;
+                sArr[sCharArray[i] - 'a']++;
+            }
+            if (Arrays.equals(pArr, sArr)) {
+                result.add(0);
+            }
+            for (int i = 0; i < (sCharArray.length - pLength); i++) {
+                sArr[sCharArray[i] - 'a']--;
+                sArr[sCharArray[i + pLength] - 'a']++;
+//                String string = IntStream.range(0, sArr.length)
+//                        .filter(index -> sArr[index] != 0)
+//                        .mapToObj(index -> String.valueOf((char) (index + 'a')))
+//                        .collect(Collectors.joining());
+                if (Arrays.equals(pArr, sArr)) {
+                    result.add(i + 1);
+                }
+            }
+            return result;
+        }
+    }
+// leetcode submit region end(Prohibit modification and deletion)
+
+}
