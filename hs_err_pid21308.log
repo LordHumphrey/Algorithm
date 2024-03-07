@@ -1,0 +1,234 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 796917760 bytes for G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3600), pid=21308, tid=32672
+#
+# JRE version:  (21.0.2+14) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.2+14-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:D:\Development\CodeSoftware\JetBrains\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58634:D:\Development\CodeSoftware\JetBrains\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 Top100Liked.leetcode.editor.cn.NextPermutation
+
+Host: 12th Gen Intel(R) Core(TM) i7-12700K, 20 cores, 47G,  Windows 11 , 64 bit Build 22621 (10.0.22621.3085)
+Time: Thu Mar  7 22:52:30 2024 China Standard Time elapsed time: 0.016456 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002377df8a9f0):  JavaThread "Unknown thread" [_thread_in_vm, id=32672, stack(0x000000b345d00000,0x000000b345e00000) (1024K)]
+
+Stack: [0x000000b345d00000,0x000000b345e00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6d0ad9]
+V  [jvm.dll+0x8abcb1]
+V  [jvm.dll+0x8ae01e]
+V  [jvm.dll+0x8ae703]
+V  [jvm.dll+0x284316]
+V  [jvm.dll+0x6cd1c5]
+V  [jvm.dll+0x6c1bba]
+V  [jvm.dll+0x35984a]
+V  [jvm.dll+0x361426]
+V  [jvm.dll+0x3b22ee]
+V  [jvm.dll+0x3b2598]
+V  [jvm.dll+0x32d1ec]
+V  [jvm.dll+0x32dd7b]
+V  [jvm.dll+0x874099]
+V  [jvm.dll+0x3bf671]
+V  [jvm.dll+0x85c928]
+V  [jvm.dll+0x4534ce]
+V  [jvm.dll+0x454fa1]
+C  [jli.dll+0x52a3]
+C  [ucrtbase.dll+0x29363]
+C  [KERNEL32.DLL+0x1257d]
+C  [ntdll.dll+0x5aa58]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffb4a048b30, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x000002377eb201f0 WorkerThread "GC Thread#0"                     [id=12284, stack(0x000000b345e00000,0x000000b345f00000) (1024K)]
+  0x000002377e01eb50 ConcurrentGCThread "G1 Main Marker"            [id=7608, stack(0x000000b345f00000,0x000000b346000000) (1024K)]
+  0x000002377e01fdf0 WorkerThread "G1 Conc#0"                       [id=24596, stack(0x000000b346000000,0x000000b346100000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffb49740327]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffb4a0be2a8] Heap_lock - owner thread: 0x000002377df8a9f0
+
+Heap address: 0x000000050b000000, size: 12112 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 64 size 144 Howl #buckets 8 coarsen threshold 14745 Howl Bitmap #cards 2048 size 272 coarsen threshold 1843 Card regions per heap region 1 cards per card region 16384
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x000000050b000000, 0x0000000800000000)
+  region size 8192K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffb49b29829]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.012 Loaded shared library D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff7da110000 - 0x00007ff7da11e000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\java.exe
+0x00007ffbac170000 - 0x00007ffbac387000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffbab6b0000 - 0x00007ffbab774000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffba97b0000 - 0x00007ffba9b56000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffba9520000 - 0x00007ffba9631000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffb9c200000 - 0x00007ffb9c21b000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\VCRUNTIME140.dll
+0x00007ffb9c290000 - 0x00007ffb9c2a8000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\jli.dll
+0x00007ffbab8a0000 - 0x00007ffbaba4e000 	C:\Windows\System32\USER32.dll
+0x00007ffb8ac10000 - 0x00007ffb8aea3000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.2506_none_270c5ae97388e100\COMCTL32.dll
+0x00007ffba9cf0000 - 0x00007ffba9d16000 	C:\Windows\System32\win32u.dll
+0x00007ffbab600000 - 0x00007ffbab6a7000 	C:\Windows\System32\msvcrt.dll
+0x00007ffbab170000 - 0x00007ffbab199000 	C:\Windows\System32\GDI32.dll
+0x00007ffba9da0000 - 0x00007ffba9eb8000 	C:\Windows\System32\gdi32full.dll
+0x00007ffba9c50000 - 0x00007ffba9cea000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffbab780000 - 0x00007ffbab7b1000 	C:\Windows\System32\IMM32.DLL
+0x00007ffb9c270000 - 0x00007ffb9c27c000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\vcruntime140_1.dll
+0x00007ffb9b040000 - 0x00007ffb9b0ce000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\msvcp140.dll
+0x00007ffb49400000 - 0x00007ffb4a19f000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\server\jvm.dll
+0x00007ffbaa440000 - 0x00007ffbaa4f3000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffbac080000 - 0x00007ffbac128000 	C:\Windows\System32\sechost.dll
+0x00007ffba9c20000 - 0x00007ffba9c48000 	C:\Windows\System32\bcrypt.dll
+0x00007ffbab340000 - 0x00007ffbab457000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffbab460000 - 0x00007ffbab4d1000 	C:\Windows\System32\WS2_32.dll
+0x00007ffba9380000 - 0x00007ffba93cd000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffb9bb10000 - 0x00007ffb9bb44000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffb9f5d0000 - 0x00007ffb9f5da000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffba9360000 - 0x00007ffba9373000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffba84b0000 - 0x00007ffba84c8000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffb9c1f0000 - 0x00007ffb9c1fa000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\jimage.dll
+0x00007ffb9b7e0000 - 0x00007ffb9ba13000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffbaa0a0000 - 0x00007ffbaa429000 	C:\Windows\System32\combase.dll
+0x00007ffbaa520000 - 0x00007ffbaa5f7000 	C:\Windows\System32\OLEAUT32.dll
+0x00007ffb9b720000 - 0x00007ffb9b752000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffba9d20000 - 0x00007ffba9d9a000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffb9c190000 - 0x00007ffb9c19f000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\instrument.dll
+0x00007ffb9c0a0000 - 0x00007ffb9c0bf000 	D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.2506_none_270c5ae97388e100;D:\Development\Infrastructure\SDK\Liberica-Full-jdk-21-windows-amd64-full\bin\server
+
+VM Arguments:
+jvm_args: -javaagent:D:\Development\CodeSoftware\JetBrains\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58634:D:\Development\CodeSoftware\JetBrains\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
+java_command: Top100Liked.leetcode.editor.cn.NextPermutation
+java_class_path (initial): D:\Development\Code\Java\Algorithm\out\production\Algorithm
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 4                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 15                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 8388608                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 796917760                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 12700352512                               {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 8388608                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 12700352512                            {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;D:\Development\CodeSoftware\EmEditor;D:\Development\CodeSoftware\Git;D:\Development\CodeSoftware\VSCode\bin;D:\Development\CodeSoftware\JetBrains\scripts;C:\Program Files\Common Files;C:\Program Files (x86)\Common Files;C:\Users\taowong\AppData\Local\Microsoft\WindowsApps;C:\Users\taowong\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\taowong\AppData\Local\Programs\oh-my-posh\bin;C:\Users\taowong\.dotnet\tools;C:\Program Files\gsudo\2.4.0;D:\Development\CodeSoftware\Git\bin;D:\OneDrive - 东北林业大学\Software\ProductivityTools\Rclone\;C:\Prgram Files\Process Lasso\;C:\Program Files\gsudo\Current;C:\Program Files\PowerShell\7\;;D:\Development\Infrastructure\Docker\resources\bin;D:\OneDrive - 东北林业大学\Documents\PowerShell\Scripts
+USERNAME=taowong
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 151 Stepping 2, GenuineIntel
+TMP=C:\Users\taowong\AppData\Local\Temp
+TEMP=C:\Users\taowong\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.3085)
+OS uptime: 5 days 8:34 hours
+Hyper-V role detected
+
+CPU: total 20 (initial active 20) (10 cores per cpu, 2 threads per core) family 6 model 151 stepping 2 microcode 0x2c, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, hv, serialize, rdtscp, rdpid, fsrm, f16c, cet_ibt, cet_ss
+Processor Information for all 20 processors :
+  Max Mhz: 3600, Current Mhz: 3600, Mhz Limit: 3600
+
+Memory: 4k page, system-wide physical 48445M (8684M free)
+TotalPageFile size 81719M (AvailPageFile size 728M)
+current process WorkingSet (physical memory assigned to process): 12M, peak: 12M
+current process commit charge ("private bytes"): 75M, peak: 835M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.2+14-LTS) for windows-amd64 JRE (21.0.2+14-LTS), built on 2024-01-16T21:50:55Z by "hudson" with MS VC++ 17.1 (VS2022)
+
+END.
