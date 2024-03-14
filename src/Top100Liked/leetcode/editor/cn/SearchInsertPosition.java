@@ -45,25 +45,18 @@ public class SearchInsertPosition {
         SearchInsertPosition searchInsertPosition = new SearchInsertPosition();
         Solution solution = searchInsertPosition.new Solution();
         int[] testNums = {1, 3, 5, 6};
-        int testTarget = 2;
+        int testTarget = 5;
         int result = solution.searchInsert(testNums, testTarget);
+        System.out.println("The target would be inserted at index: " + result);
+        testNums = new int[] {1, 3, 5, 6};
+        testTarget = 2;
+        result = solution.searchInsert(testNums, testTarget);
         System.out.println("The target would be inserted at index: " + result);
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int searchInsert(int[] nums, int target) {
-            int left = 0, right = nums.length - 1, mid = 0;
-            while (left <= right) {
-                mid = left + (right - left) / 2;
-                if (nums[mid] > target) {
-                    right = mid - 1;
-                } else if (nums[mid] < target) {
-                    left = mid + 1;
-                } else if (nums[mid] == target) {
-                    return mid;
-                }
-            }
-            return left;
+            return 1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -64,23 +64,28 @@ public class FindMinimumInRotatedSortedArray {
         int[] test1 = {3, 4, 5, 1, 2};
         int[] test2 = {4, 5, 6, 7, 0, 1, 2};
         int[] test3 = {11, 13, 15, 17};
+        int[] test4 = {3, 1, 2};
 
         System.out.println("Test case 1: " + Arrays.toString(test1) + ", result: " + solution.findMin(test1));
         System.out.println("Test case 2: " + Arrays.toString(test2) + ", result: " + solution.findMin(test2));
         System.out.println("Test case 3: " + Arrays.toString(test3) + ", result: " + solution.findMin(test3));
+        System.out.println("Test case 4: " + Arrays.toString(test4) + ", result: " + solution.findMin(test4));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findMin(int[] nums) {
-            int left = -1, right = nums.length - 1;
-            while (left + 1 < right) {
-                int mid = left + (right - left) / 2;
-                if (nums[mid] < nums[nums.length - 1]) {
+            int len = nums.length, left = 0, right = len - 1, mid = 0;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (nums[mid] > nums[right]) {
+                    left = mid + 1;
+                } else if (nums[mid] < nums[right]) {
                     right = mid;
                 } else {
-                    left = mid;
+                    break;
                 }
             }
+
             return nums[right];
         }
     }

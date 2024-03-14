@@ -80,7 +80,7 @@ public class ValidateBinarySearchTree {
                 return true;
             }
             boolean left = isValidBST(root.left);
-            if (pre != null && pre >= root.val) {
+            if (null != pre && pre >= root.val) {
                 return false;
             }
             pre = root.val;

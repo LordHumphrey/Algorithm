@@ -61,49 +61,51 @@ public class NextPermutation {
         int[] nums = {1, 2, 3};
         solution.nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
+        nums = new int[] {1, 3, 2};
+        solution.nextPermutation(nums);
+        System.out.println(Arrays.toString(nums));
         nums = new int[] {3, 2, 1};
+        solution.nextPermutation(nums);
+        System.out.println(Arrays.toString(nums));
+        nums = new int[] {1, 2, 3, 8, 5, 7, 6, 4};
         solution.nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     class Solution {
         public void nextPermutation(int[] nums) {
-            int len = nums.length;
-            if (len < 2) {
-                return;
+            int len = nums.length, k = len - 1;
+            while (k - 1 >= 0 && nums[k] <= nums[k - 1]) {
+                k--;
             }
-            int start = len - 2, end = len - 1;
-            while (start >= 0 && nums[start] >= nums[end]) {
-                start--;
-                end--;
-            }
-            if (start >= 0) {
-                int k = start + 1;
-                for (int i = len - 1; i > start; i--) {
-                    if (nums[i] > nums[start]) {
-                        k = i;
-                        break;
-                    }
+            if (k == 0) {
+                reverse(nums, k, len - 1);
+            } else {
+                int u = k;
+                while (u + 1 < len && nums[u + 1] > nums[k - 1]) {
+                    u++;
                 }
-                swap(start, k, nums);
+                swap(nums, u, k - 1);
+                reverse(nums, k, len - 1);
             }
-            reverse(end, len - 1, nums);
         }
 
-        private void swap(int i, int j, int[] nums) {
+        private void reverse(int[] nums, int start, int end) {
+            while (start < end) {
+                swap(nums, start, end);
+                start++;
+                end--;
+            }
+        }
+
+        private void swap(int[] nums, int i, int j) {
             int temp = nums[i];
             nums[i] = nums[j];
             nums[j] = temp;
         }
-
-        private void reverse(int left, int right, int[] nums) {
-            while (left < right) {
-                swap(left, right, nums);
-                left++;
-                right--;
-            }
-        }
     }
+
     // leetcode submit region end(Prohibit modification and deletion)
 
 }
