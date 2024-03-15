@@ -58,31 +58,27 @@ public class NQueens {
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        private final int[][] way = {{1, 1}, {-1, -1}, {0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}};
-        int n = 0;
 
         public List<List<String>> solveNQueens(int n) {
-            this.n = n;
-            boolean[][] visited = new boolean[n][n];
-            char[][] res = new char[n][n];
-            for (char[] re : res) {
-                Arrays.fill(re, '.');
+            char[][] arr = new char[n][n];
+            for (int i = 0; i < n; i++) {
+                Arrays.fill(arr[i], '.');
             }
-            List<List<String>> ans = new ArrayList<>();
-            dfs(n, res, 0, 0, ans);
-            return ans;
+            List<List<String>> res = new ArrayList<>();
+            dfs(arr, 0, 0, res);
+            return res;
         }
 
-        private void dfs(int n, char[][] res, int row, int col, List<List<String>> ans) {
-            if (row == n) {
-                ans.add(convertCharMatrixToNQueensFormat(res));
+        private void dfs(char[][] arr, int row, int col, List<List<String>> ans) {
+            if (row == arr.length) {
+                ans.add(convertCharMatrixToNQueensFormat(arr));
                 return;
             }
-            for (int i = 0; i < n; i++) {
-                if (!isConflict(res, row, i)) {
-                    res[row][i] = 'Q';
-                    dfs(n, res, row + 1, col, ans);
-                    res[row][i] = '.';
+            for (int i = col; i < arr.length; i++) {
+                if (notConflict(arr, row, i)) {
+                    arr[row][i] = 'Q';
+                    dfs(arr, row + 1, col, ans);
+                    arr[row][i] = '.';
                 }
             }
         }
@@ -92,29 +88,30 @@ public class NQueens {
             for (char[] row : res) {
                 result.add(new String(row));
             }
+
             return result;
         }
 
-        private boolean isConflict(char[][] arr, int row, int col) {
+        private boolean notConflict(char[][] arr, int row, int col) {
             for (int i = 0; i < arr.length; i++) {
                 if ('Q' == arr[row][i]) {
-                    return true;
+                    return false;
                 }
                 if ('Q' == arr[i][col]) {
-                    return true;
+                    return false;
                 }
             }
             for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
                 if (arr[i][j] == 'Q') {
-                    return true;
+                    return false;
                 }
             }
-            for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            for (int i = row - 1, j = col + 1; i >= 0 && j < arr.length; i--, j++) {
                 if (arr[i][j] == 'Q') {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
 
         private boolean isValidPos(int row, int col, int n) {

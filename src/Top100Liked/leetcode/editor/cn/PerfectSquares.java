@@ -31,7 +31,8 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PerfectSquares {
     public static void main(String[] args) {
@@ -44,17 +45,38 @@ public class PerfectSquares {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numSquares(int n) {
-            int[] dp = new int[n + 1];
-            Arrays.fill(dp, Integer.MAX_VALUE);
-            dp[0] = 0;
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j * j <= i; j++) {
-                    dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
-                    System.out.println("i:" + i + " (i - j * j):" + (i - j * j) + " dp[i]:" + dp[i]
-                            + " dp[i - j * j] + 1:" + (dp[i - j * j] + 1));
+            if (n <= 0) {
+                return 0;
+            }
+            List<Integer> list = new ArrayList<>();
+            int idx = 1;
+            while (idx * idx <= n) {
+                list.add(idx * idx);
+                idx++;
+            }
+            int len = list.size();
+            int[][] dp = new int[len][n + 1];
+            int first = list.getFirst();
+            for (int i = 0; i <= n; i++) {
+                if (i % first == 0) {
+                    dp[0][i] = i / first;
+                } else {
+                    dp[0][i] = Integer.MAX_VALUE;
                 }
             }
-            return dp[n];
+            for (int i = 1; i < len; i++) {
+                int t = list.get(i);
+                for (int j = 0; j <= n; j++) {
+                    dp[i][j] = dp[i - 1][j];
+                    for (int k = 1; k * t <= j; k++) {
+                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
+                            dp[i][j] = Math.min(dp[i - 1][j - k * t] + k, dp[i][j]);
+                        }
+                    }
+                }
+            }
+
+            return dp[len - 1][n] == Integer.MAX_VALUE ? -1 : dp[len - 1][n];
         }
 
         private int dfs(int n) {

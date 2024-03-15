@@ -70,21 +70,20 @@ public class MaximumProductSubarray {
                 return 0;
             }
             int[][] dp = new int[len][2];
-            //            dp[][0] 最小值
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < nums.length; i++) {
                 dp[i][0] = nums[i];
                 dp[i][1] = nums[i];
             }
-            for (int i = 1; i < len; i++) {
+            for (int i = 1; i < nums.length; i++) {
                 if (nums[i] < 0) {
-                    dp[i][0] = Math.min(dp[i][1], dp[i - 1][1] * nums[i]);
-                    dp[i][1] = Math.max(dp[i][0], dp[i - 1][0] * nums[i]);
+                    dp[i][0] = Math.min(dp[i - 1][1] * nums[i], dp[i][0]);
+                    dp[i][1] = Math.max(dp[i - 1][0] * nums[i], dp[i][1]);
                 } else {
-                    dp[i][1] = Math.max(dp[i][1], dp[i - 1][1] * nums[i]);
-                    dp[i][0] = Math.min(dp[i][0], dp[i - 1][0] * nums[i]);
+                    dp[i][0] = Math.min(dp[i - 1][0] * nums[i], dp[i][0]);
+                    dp[i][1] = Math.max(dp[i - 1][1] * nums[i], dp[i][1]);
                 }
             }
-            return Arrays.stream(dp).mapToInt(arr -> arr[1]).max().orElse(Integer.MIN_VALUE);
+            return Arrays.stream(dp).mapToInt(arr -> arr[1]).max().getAsInt();
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
