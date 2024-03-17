@@ -1,0 +1,24 @@
+    class Solution {
+        public int longestValidParentheses(String s) {
+            int len = s.length(), res = 0;
+            Deque<Integer> stack = new ArrayDeque<>(len);
+            stack.add(-1);
+            char[] charArray = s.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                if (charArray[i] == ')') {
+                    stack.pop();
+                    if (stack.isEmpty()) {
+                        stack.push(i);
+                    } else {
+                        res = Math.max(res, i - stack.peek());
+                    }
+                } else {
+                    stack.push(i);
+                }
+            }
+            return res;
+        }
+    }
+
+//runtime:2 ms
+//memory:42.4 MB

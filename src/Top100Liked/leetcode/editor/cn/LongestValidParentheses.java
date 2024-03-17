@@ -72,14 +72,12 @@ public class LongestValidParentheses {
             }
             int res = 0;
             for (int i = 0; i < charArray.length; i++) {
-                int temp = 0;
                 if (charArray[i] == ')') {
                     stack.pop();
-                    if (!stack.isEmpty()) {
-                        temp = i - stack.peek();
-                        res = Math.max(res, temp);
-                    } else {
+                    if (stack.isEmpty()) {
                         stack.push(i);
+                    } else {
+                        res = Math.max(res, i - stack.peek());
                     }
                 } else {
                     stack.push(i);

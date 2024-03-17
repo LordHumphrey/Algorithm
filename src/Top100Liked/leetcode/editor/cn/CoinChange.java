@@ -40,10 +40,12 @@
 
 package Top100Liked.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 public class CoinChange {
     public static void main(String[] args) {
         Solution solution = new CoinChange().new Solution();
-        int[] coins = {1, 2, 3};
+        int[] coins = {1, 2, 5};
         int amount = 11;
         int result = solution.coinChange(coins, amount);
         System.out.println("The minimum number of coins needed is: " + result);
@@ -51,7 +53,28 @@ public class CoinChange {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int coinChange(int[] coins, int amount) {
-            return 1;
+            int length = coins.length;
+            if (length == 0) {
+                return 0;
+            }
+            if (amount == 0) {
+                return 0;
+            }
+            int[][] dp = new int[length + 1][amount + 1];
+            for (int[] ints : dp) {
+                Arrays.fill(ints, Integer.MAX_VALUE);
+            }
+            dp[0][0] = 0;
+            for (int i = 1; i < length + 1; i++) {
+                for (int i1 = 0; i1 < amount + 1; i1++) {
+                    if (coins[i - 1] <= i1 && dp[i][i1 - coins[i1 - 1]] != Integer.MAX_VALUE) {
+                        dp[i][i1] = Math.min(dp[i][i1 - coins[i1 - 1]] + 1, dp[i - 1][i1]);
+                    } else {
+                        dp[i][i1] = dp[i - 1][i1];
+                    }
+                }
+            }
+            return dp[length][amount] == Integer.MAX_VALUE ? -1 : dp[length][amount];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

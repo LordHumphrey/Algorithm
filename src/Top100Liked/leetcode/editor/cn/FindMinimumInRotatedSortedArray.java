@@ -82,7 +82,7 @@ public class FindMinimumInRotatedSortedArray {
                 } else if (nums[mid] < nums[right]) {
                     right = mid;
                 } else {
-                    break;
+                    return nums[right];
                 }
             }
 

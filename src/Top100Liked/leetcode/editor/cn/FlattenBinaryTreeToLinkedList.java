@@ -48,6 +48,24 @@ package Top100Liked.leetcode.editor.cn;
 public class FlattenBinaryTreeToLinkedList {
     public static void main(String[] args) {
         Solution solution = new FlattenBinaryTreeToLinkedList().new Solution();
+
+        // 创建一个二叉树
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        root.right.right = new TreeNode(6);
+
+        // 调用 flatten 函数
+        solution.flatten(root);
+
+        // 打印展开后的二叉树
+        TreeNode node = root;
+        while (node != null) {
+            System.out.print(node.val + " ");
+            node = node.right;
+        }
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     /**
@@ -66,21 +84,18 @@ public class FlattenBinaryTreeToLinkedList {
      * }
      */
     class Solution {
+        private TreeNode pre = null;
+
         public void flatten(TreeNode root) {
-            while (null != root) {
-                if (null == root.left) {
-                    root = root.right;
-                } else {
-                    TreeNode left = root.left;
-                    while (left.right != null) {
-                        left = left.right;
-                    }
-                    left.right = root.right;
-                    root.right = root.left;
-                    root.left = null;
-                    root = root.right;
-                }
+            if (null == root) {
+                return;
             }
+            flatten(root.right);
+            flatten(root.left);
+            root.right = pre;
+            root.left = null;
+            pre = root;
+            return;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

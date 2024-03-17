@@ -70,7 +70,7 @@ public class NQueens {
         }
 
         private void dfs(char[][] arr, int row, int col, List<List<String>> ans) {
-            if (row == arr.length) {
+            if (arr.length == row) {
                 ans.add(convertCharMatrixToNQueensFormat(arr));
                 return;
             }
@@ -88,16 +88,15 @@ public class NQueens {
             for (char[] row : res) {
                 result.add(new String(row));
             }
-
             return result;
         }
 
         private boolean notConflict(char[][] arr, int row, int col) {
             for (int i = 0; i < arr.length; i++) {
-                if ('Q' == arr[row][i]) {
+                if (arr[i][col] == 'Q') {
                     return false;
                 }
-                if ('Q' == arr[i][col]) {
+                if (arr[row][i] == 'Q') {
                     return false;
                 }
             }

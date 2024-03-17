@@ -46,58 +46,57 @@ public class SearchA2dMatrix {
         int testTarget = 3;
         boolean result = solution.searchMatrix(testMatrix, testTarget);
         System.out.println("The target is in the matrix: " + result);
+        testMatrix = new int[][] {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 50}};
+        testTarget = 11;
+        result = solution.searchMatrix(testMatrix, testTarget);
+        System.out.println("The target is in the matrix: " + result);
+        testMatrix = new int[][] {
+            {-8, -7, -5, -3, -3, -1, 1},
+            {2, 2, 2, 3, 3, 5, 7},
+            {8, 9, 11, 11, 13, 15, 17},
+            {18, 18, 18, 20, 20, 20, 21},
+            {23, 24, 26, 26, 26, 27, 27},
+            {28, 29, 29, 30, 32, 32, 34}
+        };
+        testTarget = -5;
+        result = solution.searchMatrix(testMatrix, testTarget);
+        System.out.println("The target is in the matrix: " + result);
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean searchMatrix(int[][] mat, int t) {
-            int m = mat.length, n = mat[0].length;
-
-            // 第一次二分：定位到所在行（从上往下，找到最后一个满足 mat[x]][0] <= t 的行号）
-            int l = 0, r = m - 1;
-            while (l < r) {
-                int mid = l + r + 1 >> 1;
-                if (mat[mid][0] <= t) {
-                    l = mid;
-                } else {
-                    r = mid - 1;
+            int row = mat.length, col = mat[0].length, mid = 0, left = 0, right = row - 1;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (t <= mat[mid][col - 1] && t >= mat[mid][0]) {
+                    break;
+                } else if (t > mat[mid][0]) {
+                    left = mid + 1;
+                } else if (t < mat[mid][0]) {
+                    right = mid - 1;
                 }
             }
-
-            int row = r;
-            if (mat[row][0] == t) return true;
-            if (mat[row][0] > t) return false;
-
-            // 第二次二分：从所在行中定位到列（从左到右，找到最后一个满足 mat[row][x] <= t 的列号）
-            l = 0;
-            r = n - 1;
-            while (l < r) {
-                int mid = l + r + 1 >> 1;
-                if (mat[row][mid] <= t) {
-                    l = mid;
-                } else {
-                    r = mid - 1;
+            row = mid;
+            left = 0;
+            right = col - 1;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (t == mat[row][mid]) {
+                    return true;
+                } else if (t > mat[row][mid]) {
+                    left = mid + 1;
+                } else if (t < mat[row][mid]) {
+                    right = mid - 1;
                 }
             }
-            int col = r;
-
-            return mat[row][col] == t;
+            return false;
         }
     }
 
     // leetcode submit region end(Prohibit modification and deletion)
     class Solution1 {
         public boolean searchMatrix(int[][] mat, int t) {
-            int m = mat.length, n = mat[0].length;
-            int l = 0, r = m * n - 1;
-            while (l < r) {
-                int mid = l + r + 1 >> 1;
-                if (mat[mid / n][mid % n] <= t) {
-                    l = mid;
-                } else {
-                    r = mid - 1;
-                }
-            }
-            return mat[r / n][r % n] == t;
+            return false;
         }
     }
 }

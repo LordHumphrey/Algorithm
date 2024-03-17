@@ -68,17 +68,17 @@ public class CombinationSum {
 
         private void dfs(
                 int[] candidates, int target, int sum, int start, List<List<Integer>> ans, Deque<Integer> path) {
-            if (sum == target) {
+            if (target == sum) {
                 ans.add(new ArrayList<>(path));
-            } else if (sum > target) {
+            } else if (target < sum) {
                 return;
             }
             for (int i = start; i < candidates.length; i++) {
                 path.addLast(candidates[i]);
                 sum += candidates[i];
-                dfs(candidates, target, sum, i, ans, path);
-                path.removeLast();
+                dfs(candidates, target, sum, i + 1, ans, path);
                 sum -= candidates[i];
+                path.removeLast();
             }
         }
     }

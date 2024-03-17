@@ -41,6 +41,24 @@ import java.util.HashMap;
 public class PathSumIii {
     public static void main(String[] args) {
         Solution solution = new PathSumIii().new Solution();
+
+        // 创建一个二叉树
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(-3);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(2);
+        root.right.right = new TreeNode(11);
+        root.left.left.left = new TreeNode(3);
+        root.left.left.right = new TreeNode(-2);
+        root.left.right.right = new TreeNode(1);
+
+        // 调用 pathSum 函数
+        int targetSum = 8;
+        int result = solution.pathSum(root, targetSum);
+
+        // 打印结果
+        System.out.println(result);
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     /**
@@ -78,9 +96,8 @@ public class PathSumIii {
             curSum += node.val;
             res += prefixSumNum.getOrDefault(curSum - target, 0);
             prefixSumNum.put(curSum, prefixSumNum.getOrDefault(curSum, 0) + 1);
-            int left = recurPathSum(node.left, curSum);
-            int right = recurPathSum(node.right, curSum);
-            res = res + left + right;
+            res += recurPathSum(node.right, curSum);
+            res += recurPathSum(node.left, curSum);
             prefixSumNum.put(curSum, prefixSumNum.get(curSum) - 1);
             return res;
         }

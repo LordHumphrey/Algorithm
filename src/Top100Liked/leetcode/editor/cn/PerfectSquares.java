@@ -31,9 +31,6 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PerfectSquares {
     public static void main(String[] args) {
         PerfectSquares perfectSquares = new PerfectSquares();
@@ -45,49 +42,11 @@ public class PerfectSquares {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numSquares(int n) {
-            if (n <= 0) {
-                return 0;
-            }
-            List<Integer> list = new ArrayList<>();
-            int idx = 1;
-            while (idx * idx <= n) {
-                list.add(idx * idx);
-                idx++;
-            }
-            int len = list.size();
-            int[][] dp = new int[len][n + 1];
-            int first = list.getFirst();
-            for (int i = 0; i <= n; i++) {
-                if (i % first == 0) {
-                    dp[0][i] = i / first;
-                } else {
-                    dp[0][i] = Integer.MAX_VALUE;
-                }
-            }
-            for (int i = 1; i < len; i++) {
-                int t = list.get(i);
-                for (int j = 0; j <= n; j++) {
-                    dp[i][j] = dp[i - 1][j];
-                    for (int k = 1; k * t <= j; k++) {
-                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i - 1][j - k * t] + k, dp[i][j]);
-                        }
-                    }
-                }
-            }
-
-            return dp[len - 1][n] == Integer.MAX_VALUE ? -1 : dp[len - 1][n];
+            return dfs(n);
         }
 
         private int dfs(int n) {
-            if (n == 0) {
-                return 0;
-            }
-            int cnt = Integer.MAX_VALUE;
-            for (int i = 1; i * i <= n; i++) {
-                cnt = Math.min(cnt, dfs(n - i * i) + 1);
-            }
-            return cnt;
+            return 1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

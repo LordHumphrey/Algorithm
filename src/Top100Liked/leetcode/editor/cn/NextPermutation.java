@@ -70,24 +70,33 @@ public class NextPermutation {
         nums = new int[] {1, 2, 3, 8, 5, 7, 6, 4};
         solution.nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
+        nums = new int[] {1, 5, 1};
+        solution.nextPermutation(nums);
+        System.out.println(Arrays.toString(nums));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
 
     class Solution {
         public void nextPermutation(int[] nums) {
-            int len = nums.length, k = len - 1;
-            while (k - 1 >= 0 && nums[k] <= nums[k - 1]) {
-                k--;
+            int length = nums.length;
+            if (length <= 1) {
+                return;
             }
-            if (k == 0) {
-                reverse(nums, k, len - 1);
+            int m = length - 1;
+            while (m > 0 && nums[m] <= nums[m - 1]) {
+                m--;
+            }
+            if (0 == m) {
+                reverse(nums, 0, length - 1);
             } else {
-                int u = k;
-                while (u + 1 < len && nums[u + 1] > nums[k - 1]) {
-                    u++;
+                int n = m;
+                while (n < length && nums[n] > nums[m - 1]) {
+                    n++;
                 }
-                swap(nums, u, k - 1);
-                reverse(nums, k, len - 1);
+                System.out.print(m + " nums[m] " + nums[m]);
+                System.out.println(n - 1 + " nums[n-1] " + nums[n - 1]);
+                swap(nums, n - 1, m - 1);
+                reverse(nums, m, length - 1);
             }
         }
 
