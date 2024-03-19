@@ -96,8 +96,8 @@ public class PathSumIii {
             curSum += node.val;
             res += prefixSumNum.getOrDefault(curSum - target, 0);
             prefixSumNum.put(curSum, prefixSumNum.getOrDefault(curSum, 0) + 1);
-            res += recurPathSum(node.right, curSum);
             res += recurPathSum(node.left, curSum);
+            res += recurPathSum(node.right, curSum);
             prefixSumNum.put(curSum, prefixSumNum.get(curSum) - 1);
             return res;
         }

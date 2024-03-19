@@ -43,43 +43,52 @@
 //
 // Related Topics 位运算 数组 字符串 👍 151 👎 0
 
-package codingInterviewsSpecial.leetcode.editor.cn;
+package Top100Liked.leetcode.editor.cn;
 
 public class AseY1I {
     public static void main(String[] args) {
         Solution solution = new AseY1I().new Solution();
-        System.out.println(solution.maxProduct(
-                new String[] {"abcw", "baz", "foo", "bar", "fxyz", "abcdef"})); // Expected output: 16
-        System.out.println(
-                solution.maxProduct(new String[] {"a", "ab", "abc", "d", "cd", "bcd", "abcd"})); // Expected output: 4
-        System.out.println(solution.maxProduct(new String[] {"a", "aa", "aaa", "aaaa"})); // Expected output: 0
+        String[] words1 = {"abcw", "baz", "foo", "bar", "fxyz", "abcdef"};
+        System.out.println(solution.maxProduct(words1)); // Expected output: 16
+
+        String[] words2 = {"a", "ab", "abc", "d", "cd", "bcd", "abcd"};
+        System.out.println(solution.maxProduct(words2)); // Expected output: 4
+
+        String[] words3 = {"a", "aa", "aaa", "aaaa"};
+        System.out.println(solution.maxProduct(words3)); // Expected output: 0
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
+
     class Solution {
         public int maxProduct(String[] words) {
-            boolean[][] flag = new boolean[words.length][26];
-            for (int i = 0; i < words.length; i++) {
-                for (char c : words[i].toCharArray()) {
-                    flag[i][c - 'a'] = true;
+            int length = words.length;
+            int[][] arrs = new int[length][26];
+            for (int i = 0; i < length; i++) {
+                char[] charArray = words[i].toCharArray();
+                for (char c : charArray) {
+                    arrs[i][c - 'a']++;
                 }
             }
             int res = 0;
             for (int i = 0; i < words.length; i++) {
-                for (int i1 = 0; i1 < words.length; i1++) {
-                    int j = 0;
-                    for (; j < 26; j++) {
-                        if (flag[i][j] && flag[i1][j]) {
+                for (int j = 0; j < words.length; j++) {
+                    int i1 = 0;
+                    for (i1 = 0; i1 < 26; i1++) {
+                        if (arrs[i][i1] * arrs[j][i1] != 0) {
                             break;
                         }
                     }
-                    if (j == 26) {
-                        res = Math.max(res, words[i].length() * words[i1].length());
+                    if (i1 == 26) {
+                        res = Math.max(res, words[i].length() * words[j].length());
                     }
                 }
             }
+
             return res;
         }
     }
+
     // leetcode submit region end(Prohibit modification and deletion)
 
 }

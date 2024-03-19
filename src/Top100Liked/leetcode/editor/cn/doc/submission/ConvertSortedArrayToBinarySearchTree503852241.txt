@@ -1,0 +1,19 @@
+    class Solution {
+        public TreeNode sortedArrayToBST(int[] nums) {
+            return sortedArrayToBstDfs(nums, 0, nums.length - 1);
+        }
+
+        private TreeNode sortedArrayToBstDfs(int[] nums, int start, int end) {
+            if (start > end) {
+                return null;
+            }
+            int mid = start + (end - start) / 2;
+            TreeNode node = new TreeNode(nums[mid]);
+            node.left = sortedArrayToBstDfs(nums, start, mid - 1);
+            node.right = sortedArrayToBstDfs(nums, mid + 1, end);
+            return node;
+        }
+    }
+
+//runtime:0 ms
+//memory:42.2 MB

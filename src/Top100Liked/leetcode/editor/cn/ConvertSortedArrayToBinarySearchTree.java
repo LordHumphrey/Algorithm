@@ -84,7 +84,7 @@ public class ConvertSortedArrayToBinarySearchTree {
             if (start > end) {
                 return null;
             }
-            int mid = start + (end - start) / 2;
+            int mid = (start + end) / 2;
             TreeNode node = new TreeNode(nums[mid]);
             node.left = sortedArrayToBstDfs(nums, start, mid - 1);
             node.right = sortedArrayToBstDfs(nums, mid + 1, end);

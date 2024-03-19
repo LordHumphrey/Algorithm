@@ -53,36 +53,56 @@ public class SearchInRotatedSortedArray {
         int target = 1;
         int result = solution.search(nums, target);
         System.out.println(result);
+        nums = new int[] {4, 5, 6, 7, 0, 1, 2};
+        target = 4;
+        System.out.println(solution.search(nums, target));
+        nums = new int[] {1, 3};
+        target = 3;
+        System.out.println(solution.search(nums, target));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int search(int[] nums, int target) {
-            int min = findMin(nums);
-            if (target > nums[nums.length - 1]) {
-                return findTarget(nums, -1, min, target);
+            if (nums.length == 1) {
+                return nums[0] == target ? 0 : -1;
             }
-            return findTarget(nums, min - 1, nums.length, target);
+            int min = findMin(nums);
+            if (target < nums[nums.length - 1]) {
+                return findTarget(nums, min, nums.length - 1, target);
+            } else if (target > nums[nums.length - 1]) {
+                return findTarget(nums, 0, min, target);
+            } else if (nums[nums.length - 1] == target) {
+                return nums.length - 1;
+            }
+            return -1;
         }
 
         private int findTarget(int[] nums, int left, int right, int target) {
-            while (left + 1 < right) {
-                int mid = left + (right - left) / 2;
-                if (nums[mid] < target) {
-                    left = mid;
-                } else {
-                    right = mid;
+            int mid = 0;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (nums[mid] > target) {
+                    right = mid - 1;
+                } else if (nums[mid] < target) {
+                    left = mid + 1;
+                } else if (nums[mid] == target) {
+                    return mid;
                 }
             }
-            return nums[right] == target ? right : -1;
+            return -1;
         }
 
         public int findMin(int[] nums) {
-            int n = nums.length;
-            int left = -1, right = n - 1; // 开区间 (-1, n-1)
-            while (left + 1 < right) { // 开区间不为空
-                int mid = left + (right - left) / 2;
-                if (nums[mid] < nums[n - 1]) right = mid; // 蓝色
-                else left = mid; // 红色
+            int left = 0, right = nums.length - 1, mid = 0;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (nums[mid] > nums[right]) {
+                    left = mid + 1;
+                } else if (nums[mid] < nums[right]) {
+                    right = mid;
+                } else {
+                    break;
+                }
             }
             return right;
         }

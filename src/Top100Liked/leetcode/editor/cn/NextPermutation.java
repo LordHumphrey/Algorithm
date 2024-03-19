@@ -78,24 +78,21 @@ public class NextPermutation {
 
     class Solution {
         public void nextPermutation(int[] nums) {
-            int length = nums.length;
+            int length = nums.length, m = length - 1;
             if (length <= 1) {
                 return;
             }
-            int m = length - 1;
-            while (m > 0 && nums[m] <= nums[m - 1]) {
+            while (m >= 1 && nums[m] <= nums[m - 1]) {
                 m--;
             }
             if (0 == m) {
                 reverse(nums, 0, length - 1);
             } else {
-                int n = m;
-                while (n < length && nums[n] > nums[m - 1]) {
-                    n++;
+                int u = m;
+                while (u < length && nums[u] > nums[m - 1]) {
+                    u++;
                 }
-                System.out.print(m + " nums[m] " + nums[m]);
-                System.out.println(n - 1 + " nums[n-1] " + nums[n - 1]);
-                swap(nums, n - 1, m - 1);
+                swap(nums, u - 1, m - 1);
                 reverse(nums, m, length - 1);
             }
         }

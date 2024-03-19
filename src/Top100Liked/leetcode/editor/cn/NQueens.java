@@ -92,11 +92,12 @@ public class NQueens {
         }
 
         private boolean notConflict(char[][] arr, int row, int col) {
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i][col] == 'Q') {
+            int length = arr.length;
+            for (int i = 0; i < length; i++) {
+                if (arr[row][i] == 'Q') {
                     return false;
                 }
-                if (arr[row][i] == 'Q') {
+                if (arr[i][col] == 'Q') {
                     return false;
                 }
             }
@@ -105,7 +106,7 @@ public class NQueens {
                     return false;
                 }
             }
-            for (int i = row - 1, j = col + 1; i >= 0 && j < arr.length; i--, j++) {
+            for (int i = row - 1, j = col + 1; i >= 0 && j < length; i--, j++) {
                 if (arr[i][j] == 'Q') {
                     return false;
                 }

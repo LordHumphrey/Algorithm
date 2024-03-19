@@ -49,16 +49,8 @@ public class JumpGame {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canJump(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return true;
-            }
-            int maxPos = 0;
-            for (int i = 0; i < nums.length; i++) {
-                if (maxPos >= i) {
-                    maxPos = Math.max(i + nums[i], maxPos);
-                }
-            }
-            return maxPos >= nums.length - 1;
+
+            return true;
         }
     }
 

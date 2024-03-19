@@ -54,12 +54,6 @@ public class CoinChange {
     class Solution {
         public int coinChange(int[] coins, int amount) {
             int length = coins.length;
-            if (length == 0) {
-                return 0;
-            }
-            if (amount == 0) {
-                return 0;
-            }
             int[][] dp = new int[length + 1][amount + 1];
             for (int[] ints : dp) {
                 Arrays.fill(ints, Integer.MAX_VALUE);
@@ -67,8 +61,8 @@ public class CoinChange {
             dp[0][0] = 0;
             for (int i = 1; i < length + 1; i++) {
                 for (int i1 = 0; i1 < amount + 1; i1++) {
-                    if (coins[i - 1] <= i1 && dp[i][i1 - coins[i1 - 1]] != Integer.MAX_VALUE) {
-                        dp[i][i1] = Math.min(dp[i][i1 - coins[i1 - 1]] + 1, dp[i - 1][i1]);
+                    if (i1 >= coins[i - 1] && dp[i][i1 - coins[i - 1]] != Integer.MAX_VALUE) {
+                        dp[i][i1] = Math.min(dp[i - 1][i1], dp[i][i1 - coins[i - 1]] + 1);
                     } else {
                         dp[i][i1] = dp[i - 1][i1];
                     }
