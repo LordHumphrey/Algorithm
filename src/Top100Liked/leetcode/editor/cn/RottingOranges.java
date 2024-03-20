@@ -78,41 +78,42 @@ public class RottingOranges {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int orangesRotting(int[][] grid) {
-            int fresh = 0, row = grid.length, col = grid[0].length;
+            int row = grid.length;
+            int col = grid[0].length;
             Deque<int[]> queue = new ArrayDeque<>();
+            int fresh = 0;
             for (int i = 0; i < row; i++) {
                 for (int i1 = 0; i1 < col; i1++) {
-                    if (grid[i][i1] == 2) {
-                        queue.addLast(new int[] {i, i1});
-                    } else if (grid[i][i1] == 1) {
+                    if (grid[i][i1] == 1) {
                         fresh++;
+                    } else if (grid[i][i1] == 2) {
+                        queue.addLast(new int[] {i, i1});
                     }
                 }
             }
-            int[][] pos = new int[][] {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
-            int res = 0;
+            int[][] pos = new int[][] {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+            int ans = 0;
             while (!queue.isEmpty() && fresh > 0) {
-                res++;
                 int size = queue.size();
+                ans++;
                 for (int i = 0; i < size; i++) {
                     int[] first = queue.pollFirst();
                     int r = Objects.requireNonNull(first)[0];
                     int c = Objects.requireNonNull(first)[1];
                     for (int[] po : pos) {
                         int rPos = po[0], cPos = po[1];
-                        if (r + rPos >= 0
-                                && r + rPos < row
-                                && c + cPos >= 0
-                                && c + cPos < col
-                                && grid[r + rPos][c + cPos] == 1) {
-                            grid[r + rPos][c + cPos] = 2;
-                            queue.add(new int[] {r + rPos, c + cPos});
+                        int rNew = rPos + r;
+                        int cNew = cPos + c;
+                        if (rNew < row && rNew >= 0 && cNew < col && cNew >= 0 && grid[rNew][cNew] == 1) {
+                            grid[rNew][cNew] = 2;
+                            queue.add(new int[] {rNew, cNew});
                             fresh--;
                         }
                     }
                 }
             }
-            return fresh == 0 ? res : -1;
+
+            return fresh == 0 ? ans : -1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
