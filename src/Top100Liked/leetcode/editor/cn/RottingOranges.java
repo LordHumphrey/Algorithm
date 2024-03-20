@@ -55,6 +55,7 @@ package Top100Liked.leetcode.editor.cn;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Objects;
 
 public class RottingOranges {
     public static void main(String[] args) {
@@ -66,51 +67,52 @@ public class RottingOranges {
         };
         int result = solution.orangesRotting(grid);
         System.out.println("Time required for all oranges to rot: " + result);
+        grid = new int[][] {
+            {2, 1, 1},
+            {1, 1, 1},
+            {0, 1, 2}
+        };
+        result = solution.orangesRotting(grid);
+        System.out.println("Time required for all oranges to rot: " + result);
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int orangesRotting(int[][] grid) {
             int fresh = 0, row = grid.length, col = grid[0].length;
-            Deque<int[]> deque = new ArrayDeque<>();
+            Deque<int[]> queue = new ArrayDeque<>();
             for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
-                    if (grid[i][j] == 2) {
-                        deque.addLast(new int[] {i, j});
-                    } else if (grid[i][j] == 1) {
+                for (int i1 = 0; i1 < col; i1++) {
+                    if (grid[i][i1] == 2) {
+                        queue.addLast(new int[] {i, i1});
+                    } else if (grid[i][i1] == 1) {
                         fresh++;
                     }
                 }
             }
-            int round = 0;
-            while (!deque.isEmpty() && fresh > 0) {
-                round++;
-                int size = deque.size();
+            int[][] pos = new int[][] {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+            int res = 0;
+            while (!queue.isEmpty() && fresh > 0) {
+                res++;
+                int size = queue.size();
                 for (int i = 0; i < size; i++) {
-                    int[] point = deque.pollFirst();
-                    int r = point[0], c = point[1];
-                    if (r - 1 >= 0 && grid[r - 1][c] == 1) {
-                        grid[r - 1][c] = 2;
-                        fresh--;
-                        deque.addLast(new int[] {r - 1, c});
-                    }
-                    if (r + 1 < row && grid[r + 1][c] == 1) {
-                        grid[r + 1][c] = 2;
-                        fresh--;
-                        deque.addLast(new int[] {r + 1, c});
-                    }
-                    if (c - 1 >= 0 && grid[r][c - 1] == 1) {
-                        grid[r][c - 1] = 2;
-                        fresh--;
-                        deque.addLast(new int[] {r, c - 1});
-                    }
-                    if (c + 1 < col && grid[r][c + 1] == 1) {
-                        grid[r][c + 1] = 2;
-                        fresh--;
-                        deque.addLast(new int[] {r, c + 1});
+                    int[] first = queue.pollFirst();
+                    int r = Objects.requireNonNull(first)[0];
+                    int c = Objects.requireNonNull(first)[1];
+                    for (int[] po : pos) {
+                        int rPos = po[0], cPos = po[1];
+                        if (r + rPos >= 0
+                                && r + rPos < row
+                                && c + cPos >= 0
+                                && c + cPos < col
+                                && grid[r + rPos][c + cPos] == 1) {
+                            grid[r + rPos][c + cPos] = 2;
+                            queue.add(new int[] {r + rPos, c + cPos});
+                            fresh--;
+                        }
                     }
                 }
             }
-            return fresh == 0 ? round : -1;
+            return fresh == 0 ? res : -1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

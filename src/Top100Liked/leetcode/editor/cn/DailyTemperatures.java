@@ -58,11 +58,7 @@ public class DailyTemperatures {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] dailyTemperatures(int[] temperatures) {
-            int len = temperatures.length;
-            if (len == 0) {
-                return new int[0];
-            }
-            int[] ans = new int[len];
+            int[] ans = new int[temperatures.length];
             Deque<Integer> stack = new ArrayDeque<>();
             for (int i = 0; i < temperatures.length; i++) {
                 int temperature = temperatures[i];

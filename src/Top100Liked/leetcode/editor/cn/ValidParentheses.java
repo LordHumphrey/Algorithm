@@ -60,19 +60,32 @@ public class ValidParentheses {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isValid(String s) {
-            Deque<Character> stack = new ArrayDeque<>();
             char[] charArray = s.toCharArray();
-            for (char c : charArray) {
-                if ('(' == c || '{' == c || '[' == c) {
-                    stack.addFirst(c);
-                } else {
-                    if (stack.isEmpty()) {
+            Deque<Character> stack = new ArrayDeque<>();
+            for (int i = 0; i < charArray.length; i++) {
+                if (charArray[i] == ')') {
+                    if (stack.isEmpty() || stack.peek() != '(') {
                         return false;
+                    } else {
+                        stack.pop();
                     }
-                    char top = stack.removeFirst();
-
-                    if (c == ')' && top != '(' || c == '}' && top != '{' || c == ']' && top != '[') {
+                } else if (charArray[i] == '(') {
+                    stack.push('(');
+                } else if (charArray[i] == '{') {
+                    stack.push('{');
+                } else if (charArray[i] == '}') {
+                    if (stack.isEmpty() || stack.peek() != '{') {
                         return false;
+                    } else {
+                        stack.pop();
+                    }
+                } else if (charArray[i] == '[') {
+                    stack.push('[');
+                } else if (charArray[i] == ']') {
+                    if (stack.isEmpty() || stack.peek() != '[') {
+                        return false;
+                    } else {
+                        stack.pop();
                     }
                 }
             }
