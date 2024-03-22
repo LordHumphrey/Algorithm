@@ -59,6 +59,7 @@ public class ImplementTriePrefixTree {
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     class Trie {
+
         class TrieNode {
             boolean val;
             TrieNode[] children = new TrieNode[26];
@@ -71,37 +72,41 @@ public class ImplementTriePrefixTree {
         }
 
         public void insert(String word) {
-            TrieNode tempRoot = root;
-            for (char c : word.toCharArray()) {
+            TrieNode temp = root;
+            char[] charArray = word.toCharArray();
+            for (char c : charArray) {
                 int i = c - 'a';
-                if (tempRoot.children[i] == null) {
-                    tempRoot.children[i] = new TrieNode();
+                if (temp.children[i] == null) {
+                    temp.children[i] = new TrieNode();
                 }
-                tempRoot = tempRoot.children[i];
+                temp = temp.children[i];
             }
-            tempRoot.val = true;
+            temp.val = true;
+            return;
         }
 
         public boolean search(String word) {
-            TrieNode tempRoot = root;
-            for (char c : word.toCharArray()) {
+            TrieNode temp = root;
+            char[] charArray = word.toCharArray();
+            for (char c : charArray) {
                 int i = c - 'a';
-                if (tempRoot.children[i] == null) {
+                if (temp.children[i] == null) {
                     return false;
                 }
-                tempRoot = tempRoot.children[i];
+                temp = temp.children[i];
             }
-            return tempRoot.val;
+        return temp != null && temp.val; // 在返回 temp.val 之前检查 temp 是否为 null
         }
 
         public boolean startsWith(String prefix) {
-            TrieNode tempRoot = root;
-            for (char c : prefix.toCharArray()) {
+            TrieNode temp = root;
+            char[] charArray = prefix.toCharArray();
+            for (char c : charArray) {
                 int i = c - 'a';
-                if (tempRoot.children[i] == null) {
+                if (temp.children[i] == null) {
                     return false;
                 }
-                tempRoot = tempRoot.children[i];
+                temp = temp.children[i];
             }
             return true;
         }
@@ -114,6 +119,7 @@ public class ImplementTriePrefixTree {
      * boolean param_2 = obj.search(word);
      * boolean param_3 = obj.startsWith(prefix);
      */
+
     // leetcode submit region end(Prohibit modification and deletion)
 
 }
