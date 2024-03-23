@@ -1,0 +1,32 @@
+ class MinStack {
+        private Deque<Integer> stack;
+        private Deque<Integer> miniStack;
+
+        public MinStack() {
+            stack = new ArrayDeque<>();
+            miniStack = new ArrayDeque<>();
+        }
+
+        public void push(int val) {
+            stack.push(val);
+            if (miniStack.isEmpty() || miniStack.peek() >= val) {
+                miniStack.push(val);
+            }
+        }
+
+        public void pop() {
+            if (stack.pop().equals(miniStack.peek())) {
+                miniStack.pop();
+            }
+        }
+
+        public int top() {
+            return stack.peek();
+        }
+
+        public int getMin() {
+            return miniStack.peek();
+        }
+    }
+//runtime:4 ms
+//memory:43.8 MB

@@ -43,7 +43,7 @@
 // push, pop, top, and getMin最多被调用 3 * 10⁴ 次
 //
 //
-// Related Topics 栈 设计 👍 1732 👎 0
+// Related Topics 栈 设计 👍 1739 👎 0
 
 package Top100Liked.leetcode.editor.cn;
 
@@ -53,34 +53,35 @@ import java.util.Deque;
 public class MinStack {
     public static void main(String[] args) {
         MinStackSolution minStack = new MinStackSolution();
-        minStack.push(-2); // corresponds to "push", [-2]
-        minStack.push(0); // corresponds to "push", [0]
-        minStack.push(-1); // corresponds to "push", [-1]
-        System.out.println("Min: " + minStack.getMin()); // corresponds to "getMin", []
-        System.out.println("Top: " + minStack.top()); // corresponds to "top", []
-        minStack.pop(); // corresponds to "pop", []
-        System.out.println("Min: " + minStack.getMin()); // corresponds to "getMin", []
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+        System.out.println(minStack.getMin()); // --> 返回 -3.
+        minStack.pop();
+        System.out.println(minStack.top()); // --> 返回 0.
+        System.out.println(minStack.getMin()); // --> 返回 -2.
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     static class MinStackSolution {
+        private Deque<Integer> minStack;
         private Deque<Integer> stack;
-        private Deque<Integer> mini_stack;
 
         public MinStackSolution() {
+            minStack = new ArrayDeque<>();
             stack = new ArrayDeque<>();
-            mini_stack = new ArrayDeque<>();
         }
 
         public void push(int val) {
             stack.push(val);
-            if (mini_stack.isEmpty() || mini_stack.peek() >= val) {
-                mini_stack.push(val);
+            if (minStack.isEmpty() || minStack.peek() >= val) {
+                minStack.push(val);
             }
         }
 
         public void pop() {
-            if (stack.pop().equals(mini_stack.peek())) {
-                mini_stack.pop();
+            Integer pop = stack.pop();
+            if (!minStack.isEmpty() && pop.equals(minStack.peek())) {
+                minStack.pop();
             }
         }
 
@@ -89,7 +90,7 @@ public class MinStack {
         }
 
         public int getMin() {
-            return mini_stack.peek();
+            return minStack.peek();
         }
     }
 

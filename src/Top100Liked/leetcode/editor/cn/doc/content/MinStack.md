@@ -43,4 +43,4 @@ minStack.getMin();   --&gt; 返回 -2.
  <li><code>push</code>,&nbsp;<code>pop</code>,&nbsp;<code>top</code>, and&nbsp;<code>getMin</code>最多被调用&nbsp;<code>3 * 10<sup>4</sup></code>&nbsp;次</li> 
 </ul>
 
-<div><div>Related Topics</div><div><li>栈</li><li>设计</li></div></div><br><div><li>👍 1732</li><li>👎 0</li></div>
+<div><div>Related Topics</div><div><li>栈</li><li>设计</li></div></div><br><div><li>👍 1739</li><li>👎 0</li></div>

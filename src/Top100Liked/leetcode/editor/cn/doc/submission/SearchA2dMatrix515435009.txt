@@ -1,0 +1,33 @@
+    class Solution {
+        public boolean searchMatrix(int[][] mat, int t) {
+            int row = mat.length, col = mat[0].length, mid = 0, left = 0, right = row - 1;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (t <= mat[mid][col - 1] && t >= mat[mid][0]) {
+                    break;
+                } else if (t > mat[mid][0]) {
+                    left = mid + 1;
+                } else if (t < mat[mid][0]) {
+                    right = mid - 1;
+                }
+            }
+            row = mid;
+            left = 0;
+            right = col - 1;
+            while (left <= right) {
+                mid = left + (right - left) / 2;
+                if (t == mat[row][mid]) {
+                    return true;
+                } else if (t > mat[row][mid]) {
+                    left = mid + 1;
+                } else if (t < mat[row][mid]) {
+                    right = mid - 1;
+                }
+            }
+            return false;
+        }
+    }
+
+
+//runtime:0 ms
+//memory:41.2 MB
