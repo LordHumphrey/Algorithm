@@ -119,7 +119,7 @@ public class LruCache {
     // leetcode submit region begin(Prohibit modification and deletion)
 
     class LRUCache extends LinkedHashMap<Integer, Integer> {
-        Integer capacity = null;
+        private Integer capacity;
 
         public LRUCache(int capacity) {
             super(capacity, 0.75f, true);
@@ -136,7 +136,7 @@ public class LruCache {
 
         @Override
         protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-            return super.size() > capacity;
+            return this.capacity < super.size();
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -84,11 +84,12 @@ public class KthSmallestElementInABst {
         }
 
         private void middleOrderTraversal(TreeNode root) {
-            if (null == root || k <= 0) {
+            if (null == root || k < 0) {
                 return;
             }
             middleOrderTraversal(root.left);
-            if (--k == 0) {
+            k--;
+            if (0 == k) {
                 ans = root.val;
                 return;
             }

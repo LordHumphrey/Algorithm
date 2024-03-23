@@ -46,10 +46,11 @@ public class MaximumProductSubarray {
             {-2, 0, -1}, // Expected output: 0
             {-2, -3, -4}, // Expected output: 24
             {2, -5, -2, -4, 3}, // Expected output: 240
-            {0, 2} // Expected output: 2
+            {0, 2}, // Expected output: 2
+            {-2}
         };
 
-        int[] expectedResults = {6, 0, 12, 240, 2};
+        int[] expectedResults = {6, 0, 12, 240, 2, -2};
 
         for (int i = 0; i < testCases.length; i++) {
             int[] nums = testCases[i];

@@ -31,6 +31,9 @@
 
 package Top100Liked.leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PerfectSquares {
     public static void main(String[] args) {
         PerfectSquares perfectSquares = new PerfectSquares();
@@ -42,13 +45,47 @@ public class PerfectSquares {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numSquares(int n) {
-            return dfs(n);
+            List<Integer> list = new ArrayList<>();
+            int idx = 1;
+            while (idx * idx <= n) {
+                list.add(idx * idx);
+                idx++;
+            }
+            int size = list.size();
+            int[][] dp = new int[size][n + 1];
+            Integer first = list.getFirst();
+            for (int i = 0; i <= n; i++) {
+                if (i % first == 0) {
+                    dp[0][i] = i / first;
+                } else {
+                    dp[0][i] = Integer.MAX_VALUE;
+                }
+            }
+            for (int i = 1; i < size; i++) {
+                int t = list.get(i);
+                for (int j = 0; j <= n; j++) {
+                    dp[i][j] = dp[i - 1][j];
+                    for (int k = 1; k * t <= j; k++) {
+                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
+                            dp[i][j] = Math.min(dp[i - 1][j - k * t] + k, dp[i][j]);
+                        }
+                    }
+                }
+            }
+            return dp[size - 1][n] == Integer.MAX_VALUE ? -1 : dp[size - 1][n];
         }
 
-        private int dfs(int n) {
-            return 1;
+        private int dfs(int[] nums, int n) {
+            if (n == 0) {
+                return 0;
+            }
+            int res = Integer.MAX_VALUE;
+            for (int i = 1; i * i <= n; i++) {
+                res = Math.min(res, dfs(nums, n - i * i) + 1);
+            }
+            return res;
         }
     }
-    // leetcode submit region end(Prohibit modification and deletion)
 
+    // leetcode submit region end(Prohibit modification and deletion)
 }
