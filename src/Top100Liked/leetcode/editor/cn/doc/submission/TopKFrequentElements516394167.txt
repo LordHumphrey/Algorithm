@@ -1,0 +1,30 @@
+    class Solution {
+        public int[] topKFrequent(int[] nums, int k) {
+            HashMap<Integer, Integer> hashMap = new HashMap<>();
+            for (int num : nums) {
+                hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
+            }
+            PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+                public int compare(Integer a, Integer b) {
+                    return hashMap.get(a) - hashMap.get(b);
+                }
+            });
+            for (Integer key : hashMap.keySet()) {
+                if (queue.size() < k) {
+                    queue.add(key);
+                } else if (hashMap.get(key) > hashMap.get(queue.peek())) {
+                    queue.poll();
+                    queue.add(key);
+                }
+            }
+            int[] res = new int[k];
+            int idx = 0;
+            while (!queue.isEmpty()) {
+                res[idx++] = queue.poll();
+            }
+            return res;
+        }
+    }
+
+//runtime:13 ms
+//memory:47.5 MB

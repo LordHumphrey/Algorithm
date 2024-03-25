@@ -83,7 +83,7 @@ public class PathSumIii {
         HashMap<Long, Integer> prefixSumNum;
 
         public int pathSum(TreeNode root, int targetSum) {
-            target = targetSum;
+            this.target = targetSum;
             prefixSumNum = new HashMap<>();
             prefixSumNum.put(0L, 1);
             return recurPathSum(root, 0L);
