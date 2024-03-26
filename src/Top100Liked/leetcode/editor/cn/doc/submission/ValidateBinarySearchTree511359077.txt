@@ -1,0 +1,19 @@
+    class Solution {
+        Integer pre = null;
+
+        public boolean isValidBST(TreeNode root) {
+            if (null == root) {
+                return true;
+            }
+            boolean left = isValidBST(root.left);
+            if (null != pre && pre >= root.val) {
+                return false;
+            }
+            pre = root.val;
+            boolean right = isValidBST(root.right);
+            return left && right;
+        }
+    }
+
+//runtime:0 ms
+//memory:43.3 MB

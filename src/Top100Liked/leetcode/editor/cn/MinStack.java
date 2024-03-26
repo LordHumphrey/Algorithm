@@ -63,26 +63,27 @@ public class MinStack {
     }
     // leetcode submit region begin(Prohibit modification and deletion)
     static class MinStackSolution {
-        private Deque<Integer> minStack;
+
+        private Deque<Integer> miniStack;
         private Deque<Integer> stack;
 
         public MinStackSolution() {
-            minStack = new ArrayDeque<>();
+            miniStack = new ArrayDeque<>();
             stack = new ArrayDeque<>();
         }
 
         public void push(int val) {
             stack.push(val);
-            if (minStack.isEmpty() || minStack.peek() >= val) {
-                minStack.push(val);
+            if (miniStack.isEmpty() || val <= miniStack.peek()) {
+                miniStack.push(val);
+            } else {
+                miniStack.push(miniStack.peek());
             }
         }
 
         public void pop() {
-            Integer pop = stack.pop();
-            if (!minStack.isEmpty() && pop.equals(minStack.peek())) {
-                minStack.pop();
-            }
+            stack.pop();
+            miniStack.pop();
         }
 
         public int top() {
@@ -90,10 +91,9 @@ public class MinStack {
         }
 
         public int getMin() {
-            return minStack.peek();
+            return miniStack.peek();
         }
     }
-
     /**
      * Your MinStack object will be instantiated and called as such:
      * MinStack obj = new MinStack();

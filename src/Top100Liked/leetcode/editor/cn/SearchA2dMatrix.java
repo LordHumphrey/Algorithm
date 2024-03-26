@@ -50,28 +50,28 @@ public class SearchA2dMatrix {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean searchMatrix(int[][] matrix, int target) {
-            int row = matrix.length, col = matrix[0].length, mid = 0, left = 0, right = row - 1;
+            int row = matrix.length - 1, col = matrix[0].length - 1, left = 0, right = row, mid = 0;
             while (left <= right) {
                 mid = left + (right - left) / 2;
-                if (target <= matrix[mid][col - 1] && target >= matrix[mid][0]) {
+                if (matrix[mid][0] <= target && matrix[mid][col] >= target) {
+                    row = mid;
                     break;
-                } else if (target > matrix[mid][0]) {
+                } else if (matrix[mid][0] < target) {
                     left = mid + 1;
-                } else if (target < matrix[mid][0]) {
+                } else if (matrix[mid][0] > target) {
                     right = mid - 1;
                 }
             }
-            row = mid;
             left = 0;
-            right = col - 1;
+            right = col;
             while (left <= right) {
                 mid = left + (right - left) / 2;
-                if (matrix[row][mid] == target) {
-                    return true;
-                } else if (target > matrix[row][mid]) {
-                    left = mid + 1;
-                } else if (target < matrix[row][mid]) {
+                if (matrix[row][mid] > target) {
                     right = mid - 1;
+                } else if (matrix[row][mid] < target) {
+                    left = mid + 1;
+                } else if (matrix[row][mid] == target) {
+                    return true;
                 }
             }
             return false;
