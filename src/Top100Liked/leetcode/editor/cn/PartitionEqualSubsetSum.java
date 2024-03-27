@@ -58,15 +58,21 @@ public class PartitionEqualSubsetSum {
                 return false;
             }
             int half = sum / 2;
-            boolean[][] dp = new boolean[half + 1][2];
-            dp[0][1] = true;
+            boolean[][] dp = new boolean[length][half + 1];
             dp[0][0] = true;
-            for (int num : nums) {
-                for (int i = half; i >= num; i--) {
-                    dp[num][i] = dp[num][i - num] || dp[num - 1][i];
+            if (nums[0] <= half) {
+                dp[0][nums[0]] = true;
+            }
+            for (int i = 1; i < length; i++) {
+                for (int i1 = 0; i1 <= half; i1++) {
+                    if (nums[i] <= i1) {
+                        dp[i][i1] = dp[i - 1][i1] || dp[i - 1][i1 - nums[i]];
+                    } else {
+                        dp[i][i1] = dp[i - 1][i1];
+                    }
                 }
             }
-            return dp[half][0] || dp[half][1];
+            return dp[length - 1][half];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

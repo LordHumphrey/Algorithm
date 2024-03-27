@@ -70,22 +70,26 @@ public class ValidParentheses {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isValid(String s) {
-            Deque<Character> stack = new ArrayDeque<>();
             char[] charArray = s.toCharArray();
-            for (char c : charArray) {
-                if (c == '(' || c == '[' || c == '{') {
+            Deque<Character> stack = new ArrayDeque<>();
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                if (c == '(' || c == '{' || c == '[') {
                     stack.push(c);
                 } else {
                     if (stack.isEmpty()) {
                         return false;
-                    }
-                    char top = stack.pop();
-                    if (c == ')' && top != '(') {
-                        return false;
-                    } else if (c == '}' && top != '{') {
-                        return false;
-                    } else if (c == ']' && top != '[') {
-                        return false;
+                    } else {
+                        char pop = stack.pop();
+                        if (c == ')' && pop != '(') {
+                            return false;
+                        }
+                        if (c == '}' && pop != '{') {
+                            return false;
+                        }
+                        if (c == ']' && pop != '[') {
+                            return false;
+                        }
                     }
                 }
             }

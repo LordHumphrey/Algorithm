@@ -58,68 +58,62 @@ public class ImplementTriePrefixTree {
         System.out.println(trie.search("app")); // 应该输出true
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     class Trie {
 
         class TrieNode {
-            boolean val;
+            boolean isEnd = false;
             TrieNode[] children = new TrieNode[26];
         }
 
-        private TrieNode root;
+        TrieNode root;
 
         public Trie() {
             root = new TrieNode();
         }
 
         public void insert(String word) {
-            TrieNode temp = root;
+            TrieNode temp = this.root;
             char[] charArray = word.toCharArray();
-            for (char c : charArray) {
-                int i = c - 'a';
-                if (temp.children[i] == null) {
-                    temp.children[i] = new TrieNode();
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                int j = c - 'a';
+                if (temp.children[j] == null) {
+                    temp.children[j] = new TrieNode();
                 }
-                temp = temp.children[i];
+                temp = temp.children[j];
             }
-            temp.val = true;
-            return;
+            temp.isEnd = true;
         }
 
         public boolean search(String word) {
-            TrieNode temp = root;
+            TrieNode temp = this.root;
             char[] charArray = word.toCharArray();
-            for (char c : charArray) {
-                int i = c - 'a';
-                if (temp.children[i] == null) {
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                int j = c - 'a';
+                if (temp.children[j] == null) {
                     return false;
                 }
-                temp = temp.children[i];
+                temp = temp.children[j];
             }
-        return temp != null && temp.val; // 在返回 temp.val 之前检查 temp 是否为 null
+            return temp != null && temp.isEnd;
         }
 
         public boolean startsWith(String prefix) {
-            TrieNode temp = root;
+            TrieNode temp = this.root;
             char[] charArray = prefix.toCharArray();
-            for (char c : charArray) {
-                int i = c - 'a';
-                if (temp.children[i] == null) {
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                int j = c - 'a';
+                if (temp.children[j] == null) {
                     return false;
                 }
-                temp = temp.children[i];
+                temp = temp.children[j];
             }
             return true;
         }
     }
-
-    /**
-     * Your Trie object will be instantiated and called as such:
-     * Trie obj = new Trie();
-     * obj.insert(word);
-     * boolean param_2 = obj.search(word);
-     * boolean param_3 = obj.startsWith(prefix);
-     */
-
     // leetcode submit region end(Prohibit modification and deletion)
 
 }
