@@ -75,10 +75,10 @@ public class ConvertSortedArrayToBinarySearchTree {
                 return null;
             }
             int mid = start + (end - start) / 2;
-            TreeNode node = new TreeNode(nums[mid]);
-            node.left = dfs(nums, start, mid - 1);
-            node.right = dfs(nums, mid + 1, end);
-            return node;
+            TreeNode root = new TreeNode(nums[mid]);
+            root.left = dfs(nums, start, mid - 1);
+            root.right = dfs(nums, mid + 1, end);
+            return root;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

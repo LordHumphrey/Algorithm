@@ -65,10 +65,10 @@ public class TopKFrequentElements {
     class Solution {
         public int[] topKFrequent(int[] nums, int k) {
             HashMap<Integer, Integer> hashMap = new HashMap<>();
-            PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+            PriorityQueue<Integer> queue = new PriorityQueue<>(k, new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
-                    return hashMap.get(o2) - hashMap.get(o1);
+                    return hashMap.get(o1) - hashMap.get(o2);
                 }
             });
             for (int num : nums) {
