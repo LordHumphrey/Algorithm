@@ -28,7 +28,7 @@
 <ul> 
  <li>二叉树的节点个数的范围是 <code>[0,1000]</code></li> 
  <li>
-  <meta charset="UTF-8" /><code>-10<sup>9</sup>&nbsp;&lt;= Node.val &lt;= 10<sup>9</sup></code>&nbsp;</li> 
+  <meta charset="UTF-8" /><code>-10<sup>9</sup>&nbsp;&lt;= Top100Liked.leetcode.editor.cn.Node.val &lt;= 10<sup>9</sup></code>&nbsp;</li> 
  <li><code>-1000&nbsp;&lt;= targetSum&nbsp;&lt;= 1000</code>&nbsp;</li> 
 </ul>
 

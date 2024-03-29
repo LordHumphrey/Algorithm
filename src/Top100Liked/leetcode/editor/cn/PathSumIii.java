@@ -28,7 +28,7 @@
 //
 // 二叉树的节点个数的范围是 [0,1000]
 //
-// -10⁹ <= Node.val <= 10⁹
+// -10⁹ <= Top100Liked.leetcode.editor.cn.Node.val <= 10⁹
 // -1000 <= targetSum <= 1000
 //
 //

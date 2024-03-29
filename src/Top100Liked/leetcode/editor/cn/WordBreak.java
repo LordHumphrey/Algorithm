@@ -77,19 +77,20 @@ public class WordBreak {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean wordBreak(String s, List<String> wordDict) {
-            int length = s.length();
+            int sLen = s.length() + 1;
             Set<String> set = new HashSet<>(wordDict);
-            boolean[] dp = new boolean[length + 1];
+            boolean[] dp = new boolean[sLen];
             dp[0] = true;
-            for (int i = 0; i < length + 1; i++) {
+            for (int i = 0; i < sLen; i++) {
                 for (int j = 0; j < i; j++) {
                     String substring = s.substring(j, i);
-                    if (set.contains(substring) && dp[j]) {
+                    if (dp[j] && set.contains(substring)) {
                         dp[i] = true;
+                        break;
                     }
                 }
             }
-            return dp[length];
+            return dp[sLen - 1];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -31,7 +31,7 @@
 //
 //
 // 树中节点数目范围在[1, 10⁴] 内
-// -2³¹ <= Node.val <= 2³¹ - 1
+// -2³¹ <= Top100Liked.leetcode.editor.cn.Node.val <= 2³¹ - 1
 //
 //
 // Related Topics 树 深度优先搜索 二叉搜索树 二叉树 👍 2300 👎 0
@@ -75,19 +75,19 @@ public class ValidateBinarySearchTree {
      * }
      */
     class Solution {
-        private TreeNode pre;
+        Integer pre = null;
 
         public boolean isValidBST(TreeNode root) {
-            if (null == root) {
+            if (root == null) {
                 return true;
             }
             boolean left = isValidBST(root.left);
             if (pre != null) {
-                if (pre.val >= root.val) {
+                if (pre >= root.val) {
                     return false;
                 }
             }
-            pre = root;
+            pre = root.val;
             boolean right = isValidBST(root.right);
             return left && right;
         }

@@ -1,0 +1,29 @@
+    class Solution {
+        public int findDuplicate(int[] nums) {
+            int length = nums.length;
+            int ans = 0;
+            int bitMax = 31;
+            while ((length - 1) >> bitMax == 0) {
+                bitMax -= 1;
+            }
+            for (int bit = 0; bit <= bitMax; bit++) {
+                int x = 0, y = 0;
+                for (int i = 0; i < length; i++) {
+                    int num = nums[i];
+                    if ((num & (1 << bit)) != 0) {
+                        x++;
+                    }
+                    if (i >= 1 && ((i & (1 << bit)) != 0)) {
+                        y++;
+                    }
+                }
+                if (x > y) {
+                    ans |= 1 << bit;
+                }
+            }
+            return ans;
+        }
+    }
+
+//runtime:49 ms
+//memory:56.9 MB

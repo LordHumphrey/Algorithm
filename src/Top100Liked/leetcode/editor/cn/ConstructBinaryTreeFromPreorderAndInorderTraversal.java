@@ -89,19 +89,19 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
      */
     class Solution {
         public TreeNode buildTree(int[] preorder, int[] inorder) {
-            List<Integer> preOrderList = Arrays.stream(preorder).boxed().toList();
-            Deque<Integer> preOrderQueue = new ArrayDeque<>(preOrderList);
-            List<Integer> inOrderList = Arrays.stream(inorder).boxed().toList();
-            return dfs(inOrderList, preOrderQueue, 0, preorder.length - 1);
+            List<Integer> preorderList = Arrays.stream(preorder).boxed().toList();
+            List<Integer> inorderList = Arrays.stream(inorder).boxed().toList();
+            Deque<Integer> preOrderQueue = new ArrayDeque<>(preorderList);
+            return dfs(inorderList, preOrderQueue, 0, preorder.length - 1);
         }
 
         public TreeNode dfs(List<Integer> inOrder, Deque<Integer> preOrderQueue, int start, int end) {
             if (start > end) {
                 return null;
             }
-            Integer poll = preOrderQueue.poll();
-            int idx = inOrder.indexOf(poll);
-            TreeNode treeNode = new TreeNode(poll);
+            Integer head = preOrderQueue.removeFirst();
+            int idx = inOrder.indexOf(head);
+            TreeNode treeNode = new TreeNode(head);
             treeNode.left = dfs(inOrder, preOrderQueue, start, idx - 1);
             treeNode.right = dfs(inOrder, preOrderQueue, idx + 1, end);
             return treeNode;

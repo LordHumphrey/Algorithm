@@ -34,7 +34,7 @@
 //
 //
 // 树中结点数在范围 [0, 2000] 内
-// -100 <= Node.val <= 100
+// -100 <= Top100Liked.leetcode.editor.cn.Node.val <= 100
 //
 //
 //

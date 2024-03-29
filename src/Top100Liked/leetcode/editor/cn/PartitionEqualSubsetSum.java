@@ -59,16 +59,19 @@ public class PartitionEqualSubsetSum {
             }
             int half = sum / 2;
             boolean[][] dp = new boolean[length][half + 1];
-            dp[0][0] = true;
-            if (nums[0] <= half) {
-                dp[0][nums[0]] = true;
+            for (boolean[] ints : dp) {
+                Arrays.fill(ints, false);
+            }
+            for (int i = 0; i < length; i++) {
+                dp[i][0] = true;
             }
             for (int i = 1; i < length; i++) {
-                for (int i1 = 0; i1 <= half; i1++) {
-                    if (nums[i] <= i1) {
-                        dp[i][i1] = dp[i - 1][i1] || dp[i - 1][i1 - nums[i]];
+                for (int j = 0; j < half + 1; j++) {
+                    if (j - nums[i] >= 0) {
+
+                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
                     } else {
-                        dp[i][i1] = dp[i - 1][i1];
+                        dp[i][j] = dp[i - 1][j];
                     }
                 }
             }

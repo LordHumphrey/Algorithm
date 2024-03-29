@@ -34,7 +34,7 @@
 
 <ul> 
  <li>树中结点数在范围 <code>[0, 2000]</code> 内</li> 
- <li><code>-100 &lt;= Node.val &lt;= 100</code></li> 
+ <li><code>-100 &lt;= Top100Liked.leetcode.editor.cn.Node.val &lt;= 100</code></li> 
 </ul>
 
 <p>&nbsp;</p>

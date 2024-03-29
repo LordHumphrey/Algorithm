@@ -26,7 +26,7 @@
  *
  * 树中的节点数为 n 。
  * 1 <= k <= n <= 10⁴
- * 0 <= Node.val <= 10⁴
+ * 0 <= Top100Liked.leetcode.editor.cn.Node.val <= 10⁴
  *
  *
  *

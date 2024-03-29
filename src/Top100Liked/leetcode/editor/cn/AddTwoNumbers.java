@@ -34,7 +34,7 @@
 //
 //
 // 每个链表中的节点数在范围 [1, 100] 内
-// 0 <= Node.val <= 9
+// 0 <= Top100Liked.leetcode.editor.cn.Node.val <= 9
 // 题目数据保证列表表示的数字不含前导零
 //
 //
@@ -92,11 +92,11 @@ public class AddTwoNumbers {
      */
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            ListNode r1 = l1, r2 = l2, ans = new ListNode(0), cur = ans;
+            ListNode r1 = l1, r2 = l2, dummyNode = new ListNode(0), cur = dummyNode;
             int carry = 0;
             while (r1 != null || r2 != null) {
-                int x = (r1 == null) ? 0 : r1.val;
-                int y = (r2 == null) ? 0 : r2.val;
+                int x = r1 == null ? 0 : r1.val;
+                int y = r2 == null ? 0 : r2.val;
                 int sum = x + y + carry;
                 carry = sum / 10;
                 cur.next = new ListNode(sum % 10);
@@ -111,7 +111,7 @@ public class AddTwoNumbers {
             if (carry > 0) {
                 cur.next = new ListNode(carry);
             }
-            return ans.next;
+            return dummyNode.next;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
