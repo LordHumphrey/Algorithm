@@ -66,22 +66,20 @@ public class MaximumProductSubarray {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxProduct(int[] nums) {
-            int len = nums.length;
-            if (len == 0) {
-                return 0;
-            }
-            int[][] dp = new int[len][2];
-            for (int i = 0; i < nums.length; i++) {
+            int length = nums.length;
+            int[][] dp = new int[length][2];
+            for (int i = 0; i < length; i++) {
                 dp[i][0] = nums[i];
                 dp[i][1] = nums[i];
             }
-            for (int i = 1; i < nums.length; i++) {
-                if (nums[i] < 0) {
-                    dp[i][0] = Math.min(dp[i - 1][1] * nums[i], dp[i][0]);
-                    dp[i][1] = Math.max(dp[i - 1][0] * nums[i], dp[i][1]);
+            for (int i = 1; i < length; i++) {
+                int num = nums[i];
+                if (num <= 0) {
+                    dp[i][0] = Math.min(dp[i - 1][1] * num, dp[i][0]);
+                    dp[i][1] = Math.max(dp[i - 1][0] * num, dp[i][1]);
                 } else {
-                    dp[i][0] = Math.min(dp[i - 1][0] * nums[i], dp[i][0]);
-                    dp[i][1] = Math.max(dp[i - 1][1] * nums[i], dp[i][1]);
+                    dp[i][0] = Math.min(dp[i - 1][0] * num, dp[i][0]);
+                    dp[i][1] = Math.max(dp[i - 1][1] * num, dp[i][1]);
                 }
             }
             return Arrays.stream(dp).mapToInt(arr -> arr[1]).max().getAsInt();

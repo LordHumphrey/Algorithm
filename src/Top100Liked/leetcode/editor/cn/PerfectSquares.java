@@ -51,7 +51,8 @@ public class PerfectSquares {
                 list.add(idx * idx);
                 idx++;
             }
-            int size = list.size(), first = list.getFirst();
+            int size = list.size();
+            int first = list.getFirst();
             int[][] dp = new int[size][n + 1];
             for (int i = 0; i <= n; i++) {
                 if (i % first == 0) {
@@ -61,12 +62,12 @@ public class PerfectSquares {
                 }
             }
             for (int i = 1; i < size; i++) {
-                int k = list.get(i);
+                int t = list.get(i);
                 for (int j = 0; j <= n; j++) {
                     dp[i][j] = dp[i - 1][j];
-                    for (int t = 1; t * k <= j; t++) {
-                        if (dp[i - 1][j - t * k] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i - 1][j - t * k] + t, dp[i][j]);
+                    for (int k = 1; k * t <= j; k++) {
+                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
+                            dp[i][j] = Math.min(dp[i - 1][j - k * t] + k, dp[i][j]);
                         } else {
                             dp[i][j] = dp[i - 1][j];
                         }

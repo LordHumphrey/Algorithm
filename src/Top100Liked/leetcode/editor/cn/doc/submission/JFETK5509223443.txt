@@ -1,0 +1,24 @@
+    class Solution {
+        public String addBinary(String a, String b) {
+            int aLen = a.length() - 1;
+            int bLen = b.length() - 1;
+            int carry = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            while (aLen >= 0 || bLen >= 0) {
+                int aInt = aLen >= 0 ? a.charAt(aLen) - '0' : 0;
+                int bInt = bLen >= 0 ? b.charAt(bLen) - '0' : 0;
+                int sum = aInt + bInt + carry;
+                stringBuilder.append(sum % 2);
+                carry = sum / 2;
+                aLen--;
+                bLen--;
+            }
+            if (carry == 1) {
+                stringBuilder.append('1');
+            }
+            return stringBuilder.reverse().toString();
+        }
+    }
+
+//runtime:1 ms
+//memory:41.2 MB
