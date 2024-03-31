@@ -72,7 +72,6 @@ public class LongestValidParentheses {
         public int longestValidParentheses(String s) {
             Deque<Integer> stack = new ArrayDeque<>();
             stack.push(-1);
-
             int res = 0;
             char[] charArray = s.toCharArray();
             for (int i = 0; i < charArray.length; i++) {

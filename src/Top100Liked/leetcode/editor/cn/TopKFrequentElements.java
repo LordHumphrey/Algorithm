@@ -64,15 +64,15 @@ public class TopKFrequentElements {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] topKFrequent(int[] nums, int k) {
-            HashMap<Integer, Integer> hashMap = new HashMap<>();
+            HashMap<Integer, Integer> hashMap = new HashMap<>(k);
             PriorityQueue<Integer> queue = new PriorityQueue<>(k, new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
                     return hashMap.get(o1) - hashMap.get(o2);
                 }
             });
-            for (int num : nums) {
-                hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
+            for (int i = 0; i < nums.length; i++) {
+                hashMap.put(nums[i], hashMap.getOrDefault(nums[i], 0) + 1);
             }
             for (Integer i : hashMap.keySet()) {
                 if (queue.size() < k) {

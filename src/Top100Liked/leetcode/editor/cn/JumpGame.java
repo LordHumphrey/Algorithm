@@ -57,10 +57,11 @@ public class JumpGame {
         public boolean canJump(int[] nums) {
             int cnt = 0;
             for (int i = 0; i < nums.length; i++) {
-                if (cnt < i) {
+                if (cnt >= i) {
+                    cnt = Math.max(cnt, i + nums[i]);
+                } else {
                     return false;
                 }
-                cnt = Math.max(i + nums[i], cnt);
             }
             return true;
         }

@@ -73,26 +73,27 @@ public class NextPermutation {
         nums = new int[] {1, 5, 1};
         solution.nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
+        nums = new int[] {5, 1, 1};
+        solution.nextPermutation(nums);
+        System.out.println(Arrays.toString(nums));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
 
     class Solution {
         public void nextPermutation(int[] nums) {
             int length = nums.length, m = length - 1;
-            if (length <= 1) {
-                return;
-            }
             while (m >= 1 && nums[m] <= nums[m - 1]) {
                 m--;
             }
-            if (0 == m) {
-                reverse(nums, 0, length - 1);
+            if (m == 0) {
+                reverse(nums, m, length - 1);
             } else {
-                int u = m;
-                while (u < length && nums[u] > nums[m - 1]) {
-                    u++;
+                int k = m;
+                while (k < length && nums[k] > nums[m - 1]) {
+                    k++;
                 }
-                swap(nums, u - 1, m - 1);
+                System.out.println(k);
+                swap(nums, k - 1, m - 1);
                 reverse(nums, m, length - 1);
             }
         }

@@ -61,7 +61,7 @@ public class WGki4K {
             int[] result = new int[32];
             for (int num : nums) {
                 for (int i = 0; i < 32; i++) {
-                    if (((num >> i & 1) == 1)) {
+                    if ((num >> i & 1) == 1) {
                         result[i]++;
                     }
                 }
@@ -72,6 +72,7 @@ public class WGki4K {
                     ans += 1 << i;
                 }
             }
+
             return ans;
         }
     }

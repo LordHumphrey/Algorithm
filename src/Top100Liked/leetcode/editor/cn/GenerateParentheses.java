@@ -51,9 +51,9 @@ public class GenerateParentheses {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<String> generateParenthesis(int n) {
-            ArrayList<String> ans = new ArrayList<>();
-            dfs(n, new StringBuilder(), 0, 0, ans);
-            return ans;
+            ArrayList<String> arrayList = new ArrayList<>();
+            dfs(n, new StringBuilder(), 0, 0, arrayList);
+            return arrayList;
         }
 
         private void dfs(int n, StringBuilder sb, int left, int right, List<String> ans) {
