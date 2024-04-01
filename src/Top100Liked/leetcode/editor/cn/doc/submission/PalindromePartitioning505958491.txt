@@ -1,0 +1,33 @@
+    class Solution {
+        public List<List<String>> partition(String s) {
+            List<List<String>> ans = new ArrayList<>();
+            dfs(ans, 0, new ArrayDeque<>(), s);
+            return ans;
+        }
+
+        private void dfs(List<List<String>> ans, int start, Deque<String> path, String s) {
+            if (start == s.length()) {
+                ans.add(new ArrayList<>(path));
+                return;
+            }
+            for (int i = start; i < s.length(); i++) {
+                if (isPalindrome(start, i, s)) {
+                    path.addLast(s.substring(start, i + 1));
+                    dfs(ans, i + 1, path, s);
+                    path.removeLast();
+                }
+            }
+        }
+
+        private boolean isPalindrome(int left, int right, String s) {
+            while (left < right) {
+                if (s.charAt(left++) != s.charAt(right--)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+//runtime:9 ms
+//memory:54.7 MB

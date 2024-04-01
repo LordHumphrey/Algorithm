@@ -79,19 +79,19 @@ public class FindTheDuplicateNumber {
     class Solution {
         public int findDuplicate(int[] nums) {
             int length = nums.length;
-            int ans = 0;
             int bitMax = 31;
-            while (((length - 1) >> bitMax & 1) == 0) {
+            int ans = 0;
+            while ((length - 1 >> bitMax & 1) == 0) {
                 bitMax--;
             }
-            for (int i = 0; i <= bitMax; i++) {
+            for (int i = 0; i < bitMax + 1; i++) {
                 int x = 0, y = 0;
                 for (int j = 0; j < nums.length; j++) {
                     int num = nums[j];
                     if ((num >> i & 1) != 0) {
                         x++;
                     }
-                    if (j > 0 && (j >> i & 1) != 0) {
+                    if (j >= 1 && (j >> i & 1) != 0) {
                         y++;
                     }
                 }
