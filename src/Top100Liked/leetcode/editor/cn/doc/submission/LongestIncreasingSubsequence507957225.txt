@@ -1,0 +1,22 @@
+    class Solution {
+        public int lengthOfLIS(int[] nums) {
+            int length = nums.length, res = Integer.MIN_VALUE;
+            if (length == 1) {
+                return 1;
+            }
+            int[] dp = new int[length + 1];
+            Arrays.fill(dp, 1);
+            for (int i = 1; i < length; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (nums[i] > nums[j]) {
+                        dp[i] = Math.max(dp[j] + 1, dp[i]);
+                    }
+                    res = Math.max(res, dp[i]);
+                }
+            }
+            return res;
+        }
+    }
+
+//runtime:65 ms
+//memory:43.2 MB

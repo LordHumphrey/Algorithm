@@ -1,0 +1,21 @@
+    class Solution {
+        public boolean wordBreak(String s, List<String> wordDict) {
+            int sLen = s.length() + 1;
+            Set<String> set = new HashSet<>(wordDict);
+            boolean[] dp = new boolean[sLen];
+            dp[0] = true;
+            for (int i = 0; i < sLen; i++) {
+                for (int j = 0; j < i; j++) {
+                    String substring = s.substring(j, i);
+                    if (dp[j] && set.contains(substring)) {
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+            return dp[sLen - 1];
+        }
+    }
+
+//runtime:8 ms
+//memory:44.1 MB

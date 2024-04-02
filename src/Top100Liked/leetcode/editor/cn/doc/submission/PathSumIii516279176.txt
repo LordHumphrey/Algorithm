@@ -1,0 +1,45 @@
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode() {}
+     *     TreeNode(int val) { this.val = val; }
+     *     TreeNode(int val, TreeNode left, TreeNode right) {
+     *         this.val = val;
+     *         this.left = left;
+     *         this.right = right;
+     *     }
+     * }
+     */
+    class Solution {
+
+        int target;
+        HashMap<Long, Integer> prefixSumNum;
+
+        public int pathSum(TreeNode root, int targetSum) {
+            this.target = targetSum;
+            prefixSumNum = new HashMap<>();
+            prefixSumNum.put(0L, 1);
+            return recurPathSum(root, 0L);
+        }
+
+        private int recurPathSum(TreeNode node, Long curSum) {
+            if (null == node) {
+                return 0;
+            }
+            int res = 0;
+            curSum += node.val;
+            res += prefixSumNum.getOrDefault(curSum - target, 0);
+            prefixSumNum.put(curSum, prefixSumNum.getOrDefault(curSum, 0) + 1);
+            res += recurPathSum(node.left, curSum);
+            res += recurPathSum(node.right, curSum);
+            prefixSumNum.put(curSum, prefixSumNum.get(curSum) - 1);
+            return res;
+        }
+    }
+
+
+//runtime:3 ms
+//memory:43.3 MB

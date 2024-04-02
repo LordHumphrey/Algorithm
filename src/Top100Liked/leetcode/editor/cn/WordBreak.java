@@ -47,7 +47,6 @@ package Top100Liked.leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WordBreak {
     public static void main(String[] args) {
@@ -74,14 +73,16 @@ public class WordBreak {
         boolean result3 = solution.wordBreak(s3, wordDict3);
         System.out.println("Test case 3: " + (expected3 == result3 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
+
     class Solution {
         public boolean wordBreak(String s, List<String> wordDict) {
-            int sLen = s.length() + 1;
-            Set<String> set = new HashSet<>(wordDict);
-            boolean[] dp = new boolean[sLen];
+            int length = s.length();
+            boolean[] dp = new boolean[length + 1];
             dp[0] = true;
-            for (int i = 0; i < sLen; i++) {
+            HashSet<String> set = new HashSet<>(wordDict);
+            for (int i = 1; i <= length; i++) {
                 for (int j = 0; j < i; j++) {
                     String substring = s.substring(j, i);
                     if (dp[j] && set.contains(substring)) {
@@ -90,9 +91,8 @@ public class WordBreak {
                     }
                 }
             }
-            return dp[sLen - 1];
+            return dp[length];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
-
 }

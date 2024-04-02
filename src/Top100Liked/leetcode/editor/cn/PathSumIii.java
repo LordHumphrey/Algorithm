@@ -78,31 +78,27 @@ public class PathSumIii {
      * }
      */
     class Solution {
-
-        int target;
-        HashMap<Long, Integer> prefixSumNum;
+        HashMap<Long, Integer> prefixSum;
 
         public int pathSum(TreeNode root, int targetSum) {
-            this.target = targetSum;
-            prefixSumNum = new HashMap<>();
-            prefixSumNum.put(0L, 1);
-            return recurPathSum(root, 0L);
+            prefixSum = new HashMap<>();
+            prefixSum.put(0L, 1);
+            return dfs(root, targetSum, 0L, prefixSum);
         }
 
-        private int recurPathSum(TreeNode node, Long curSum) {
-            if (null == node) {
+        private int dfs(TreeNode root, int targetSum, Long curSum, HashMap<Long, Integer> map) {
+            if (root == null) {
                 return 0;
             }
-            int res = 0;
-            curSum += node.val;
-            res += prefixSumNum.getOrDefault(curSum - target, 0);
-            prefixSumNum.put(curSum, prefixSumNum.getOrDefault(curSum, 0) + 1);
-            res += recurPathSum(node.left, curSum);
-            res += recurPathSum(node.right, curSum);
-            prefixSumNum.put(curSum, prefixSumNum.get(curSum) - 1);
-            return res;
+            int ans = 0;
+            curSum += root.val;
+            ans += map.getOrDefault(curSum - targetSum, 0);
+            map.put(curSum, map.getOrDefault(curSum, 0) + 1);
+            ans += dfs(root.left, targetSum, curSum, map);
+            ans += dfs(root.right, targetSum, curSum, map);
+            map.put(curSum, map.get(curSum) - 1);
+            return ans;
         }
     }
-
     // leetcode submit region end(Prohibit modification and deletion)
 }
