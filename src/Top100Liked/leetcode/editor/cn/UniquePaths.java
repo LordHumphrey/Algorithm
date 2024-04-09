@@ -50,6 +50,8 @@
 
 package Top100Liked.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 public class UniquePaths {
     public static void main(String[] args) {
         Solution solution = new UniquePaths().new Solution();
@@ -78,23 +80,23 @@ public class UniquePaths {
         int result4 = solution.uniquePaths(m4, n4);
         System.out.println("Test case 4: " + (result4 == expected4 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int uniquePaths(int m, int n) {
             int[][] dp = new int[m][n];
-            for (int i = 0; i < m; i++) {
+            for (int i = 0; i < dp.length; i++) {
                 dp[i][0] = 1;
             }
-            for (int i = 0; i < n; i++) {
-                dp[0][i] = 1;
-            }
+            Arrays.fill(dp[0], 1);
             for (int i = 1; i < m; i++) {
-                for (int i1 = 1; i1 < n; i1++) {
-                    dp[i][i1] = dp[i - 1][i1] + dp[i][i1 - 1];
+                for (int j = 1; j < n; j++) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
                 }
             }
             return dp[m - 1][n - 1];
         }
+
     }
     // leetcode submit region end(Prohibit modification and deletion)
 

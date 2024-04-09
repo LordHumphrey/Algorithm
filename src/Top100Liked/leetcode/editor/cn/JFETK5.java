@@ -69,23 +69,25 @@ public class JFETK5 {
         String result5 = solution.addBinary(a5, b5);
         System.out.println("Test case 5: " + (expected5.equals(result5) ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String addBinary(String a, String b) {
             int carry = 0;
+            int aLen = a.length() - 1;
+            int bLen = b.length() - 1;
             StringBuilder stringBuilder = new StringBuilder();
-            int aLen = a.length() - 1, bLen = b.length() - 1;
             while (aLen >= 0 || bLen >= 0) {
-                int x = aLen >= 0 ? a.charAt(aLen) - '0' : 0;
-                int y = bLen >= 0 ? b.charAt(bLen) - '0' : 0;
-                int sum = x + y + carry;
+                int aInt = aLen >= 0 ? a.charAt(aLen) - '0' : 0;
+                int bInt = bLen >= 0 ? b.charAt(bLen) - '0' : 0;
+                int sum = aInt + bInt + carry;
                 stringBuilder.append(sum % 2);
                 carry = sum / 2;
                 aLen--;
                 bLen--;
             }
             if (carry == 1) {
-                stringBuilder.append(carry);
+                stringBuilder.append('1');
             }
             return stringBuilder.reverse().toString();
         }

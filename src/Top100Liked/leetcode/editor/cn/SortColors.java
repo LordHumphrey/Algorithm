@@ -82,23 +82,13 @@ public class SortColors {
         solution.sortColors(nums5);
         System.out.println("Test case 5: " + (Arrays.equals(nums5, expected5) ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void sortColors(int[] nums) {
             int length = nums.length;
             int left = 0, right = length - 1, i = 0;
-            while (i <= right) {
-                if (nums[i] == 0) {
-                    swap(i, left, nums);
-                    left++;
-                    i++;
-                } else if (nums[i] == 1) {
-                    i++;
-                } else if (nums[i] == 2) {
-                    swap(i, right, nums);
-                    right--;
-                }
-            }
+            return;
         }
 
         private void swap(int i, int j, int[] nums) {

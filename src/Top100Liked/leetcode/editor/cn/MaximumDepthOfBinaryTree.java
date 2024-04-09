@@ -69,19 +69,20 @@ public class MaximumDepthOfBinaryTree {
         System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {
@@ -94,7 +95,7 @@ public class MaximumDepthOfBinaryTree {
             if (null == root) {
                 return 0;
             } else {
-                return Math.max(dfs(root.left), dfs(root.right)) + 1;
+                return 1 + Math.max(dfs(root.left), dfs(root.right));
             }
         }
     }

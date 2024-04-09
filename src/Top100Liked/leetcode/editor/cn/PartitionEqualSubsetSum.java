@@ -35,10 +35,10 @@ import java.util.Arrays;
 public class PartitionEqualSubsetSum {
     public static void main(String[] args) {
         Solution solution = new PartitionEqualSubsetSum().new Solution();
-        testCanPartition(solution, new int[] {1, 5, 11, 5}, true); // Test passed
-        testCanPartition(solution, new int[] {1, 2, 3, 5}, false); // Test passed
-        testCanPartition(solution, new int[] {1, 2, 5}, false); // Test passed
-        testCanPartition(solution, new int[] {3, 3, 3, 4, 5}, true); // Test passed
+        testCanPartition(solution, new int[]{1, 5, 11, 5}, true); // Test passed
+        testCanPartition(solution, new int[]{1, 2, 3, 5}, false); // Test passed
+        testCanPartition(solution, new int[]{1, 2, 5}, false); // Test passed
+        testCanPartition(solution, new int[]{3, 3, 3, 4, 5}, true); // Test passed
     }
 
     public static void testCanPartition(Solution solution, int[] nums, boolean expected) {
@@ -49,33 +49,24 @@ public class PartitionEqualSubsetSum {
             System.out.println("Test failed. Expected " + expected + " but got " + result);
         }
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canPartition(int[] nums) {
-            int length = nums.length;
+
             int sum = Arrays.stream(nums).sum();
             if (sum % 2 != 0) {
                 return false;
             }
             int half = sum / 2;
-            boolean[][] dp = new boolean[length][half + 1];
-            for (boolean[] ints : dp) {
-                Arrays.fill(ints, false);
-            }
-            for (int i = 0; i < length; i++) {
-                dp[i][0] = true;
-            }
-            for (int i = 1; i < length; i++) {
-                for (int j = 0; j < half + 1; j++) {
-                    if (j - nums[i] >= 0) {
-
-                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
-                    } else {
-                        dp[i][j] = dp[i - 1][j];
-                    }
+            boolean[] dp = new boolean[half + 1];
+            dp[0] = true;
+            for (int num : nums) {
+                for (int i = half; i >= num; i--) {
+                    dp[i] = dp[i] || dp[i - num];
                 }
             }
-            return dp[length - 1][half];
+            return dp[half];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

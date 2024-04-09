@@ -75,17 +75,12 @@ public class JumpGameIi {
         int result5 = solution.jump(nums5);
         System.out.println("Test case 5: " + (result5 == expected5 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int jump(int[] nums) {
-            int len = nums.length, cnt = 0, maxPos = 0, end = 0;
-            for (int i = 0; i < len - 1; i++) {
-                maxPos = Math.max(maxPos, i + nums[i]);
-                if (i == end) {
-                    cnt++;
-                    end = maxPos;
-                }
-            }
+            int cnt = 0, end = 0, maxPos = 0;
+
             return cnt;
         }
     }

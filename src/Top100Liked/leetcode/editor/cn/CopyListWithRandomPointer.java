@@ -76,12 +76,7 @@ public class CopyListWithRandomPointer {
         node1.random = node2;
         node2.random = node2;
         Node result1 = solution.copyRandomList(node1);
-        System.out.println("Test case 1: "
-                + (result1.val == node1.val
-                                && result1.next.val == node1.next.val
-                                && result1.random.val == node1.random.val
-                        ? "Passed"
-                        : "Failed"));
+        System.out.println("Test case 1: " + (result1.val == node1.val && result1.next.val == node1.next.val && result1.random.val == node1.random.val ? "Passed" : "Failed"));
 
         // Test case 2
         Node node3 = new Node(3);
@@ -93,30 +88,30 @@ public class CopyListWithRandomPointer {
         node4.random = node3;
         node5.random = node4;
         Node result2 = solution.copyRandomList(node3);
-        System.out.println("Test case 2: "
-                + (result2.val == node3.val
-                                && result2.next.val == node3.next.val
-                                && result2.random.val == node3.random.val
-                        ? "Passed"
-                        : "Failed"));
+        System.out.println("Test case 2: " + (result2.val == node3.val && result2.next.val == node3.next.val && result2.random.val == node3.random.val ? "Passed" : "Failed"));
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public Node copyRandomList(Node head) {
+            Node cur = new Node(0);
+            cur = head;
             HashMap<Node, Node> map = new HashMap<>();
-            Node dummyNode = head;
-            while (dummyNode != null) {
-                map.put(dummyNode, new Node(dummyNode.val));
-                dummyNode = dummyNode.next;
+            while (cur != null) {
+                Node newNode = new Node(cur.val);
+                map.put(cur, newNode);
+                cur = cur.next;
             }
-            dummyNode = head;
-            while (dummyNode != null) {
-                map.get(dummyNode).next = map.get(dummyNode.next);
-                map.get(dummyNode).random = map.get(dummyNode.random);
-                dummyNode = dummyNode.next;
+            //            cur = head;
+            //            while (cur != null) {
+            //                map.get(cur).next = map.get(cur.next);
+            //                map.get(cur).random = map.get(cur.random);
+            //                cur = cur.next;
+            //            }
+            for (Node node : map.keySet()) {
+                map.get(node).next = map.get(node.next);
+                map.get(node).random = map.get(node.random);
             }
-
             return map.get(head);
         }
     }

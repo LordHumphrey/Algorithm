@@ -41,14 +41,12 @@ public class MaximumProductSubarray {
     public static void main(String[] args) {
         Solution solution = new MaximumProductSubarray().new Solution();
 
-        int[][] testCases = {
-            {2, 3, -2, 4}, // Expected output: 6
-            {-2, 0, -1}, // Expected output: 0
-            {-2, -3, -4}, // Expected output: 24
-            {2, -5, -2, -4, 3}, // Expected output: 240
-            {0, 2}, // Expected output: 2
-            {-2}
-        };
+        int[][] testCases = {{2, 3, -2, 4}, // Expected output: 6
+                {-2, 0, -1}, // Expected output: 0
+                {-2, -3, -4}, // Expected output: 24
+                {2, -5, -2, -4, 3}, // Expected output: 240
+                {0, 2}, // Expected output: 2
+                {-2}};
 
         int[] expectedResults = {6, 0, 12, 240, 2, -2};
 
@@ -63,6 +61,7 @@ public class MaximumProductSubarray {
             }
         }
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxProduct(int[] nums) {
@@ -86,5 +85,4 @@ public class MaximumProductSubarray {
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
-
 }

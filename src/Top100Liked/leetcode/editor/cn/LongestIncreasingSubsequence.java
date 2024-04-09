@@ -46,8 +46,6 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.Arrays;
-
 public class LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestIncreasingSubsequence().new Solution();
@@ -76,21 +74,16 @@ public class LongestIncreasingSubsequence {
         int result4 = solution.lengthOfLIS(nums4);
         System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLIS(int[] nums) {
-            int length = nums.length;
-            int[] dp = new int[length];
-            Arrays.fill(dp, 1);
-            int res = 0;
-            for (int i = 0; i < length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (nums[i] > nums[j]) {
-                        dp[i] = Math.max(dp[j] + 1, dp[i]);
-                    }
-                    res = Math.max(res, dp[i]);
-                }
+            int length = nums.length, res = 0;
+            if (length == 1) {
+                return 1;
             }
+
+
             return res;
         }
     }
