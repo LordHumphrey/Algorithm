@@ -51,33 +51,11 @@ public class AseY1I {
         int result = solution.maxProduct(words);
         System.out.println(result); // 输出应为16
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxProduct(String[] words) {
-            int length = words.length;
-            boolean[][] arr = new boolean[length][26];
-            for (int i = 0; i < length; i++) {
-                char[] charArray = words[i].toCharArray();
-                for (char c : charArray) {
-                    arr[i][c - 'a'] = true;
-                }
-            }
-            int res = 0;
-            for (int i = 0; i < length; i++) {
-                for (int j = 0; j < length; j++) {
-                    int cnt = 0;
-                    while (cnt < 26) {
-                        if (arr[i][cnt] && arr[j][cnt]) {
-                            break;
-                        }
-                        cnt++;
-                    }
-                    if (26 == cnt) {
-                        res = Math.max(res, words[i].length() * words[j].length());
-                    }
-                }
-            }
-            return res;
+            return 1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

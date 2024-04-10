@@ -68,16 +68,15 @@ public class DailyTemperatures {
         public int[] dailyTemperatures(int[] temperatures) {
             Deque<Integer> stack = new ArrayDeque<>();
             int length = temperatures.length;
-            int[] res = new int[length];
-            for (int i = 0; i < temperatures.length; i++) {
+            int[] ans = new int[length];
+            for (int i = 0; i < length; i++) {
                 while (!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
-                    int i1 = i - stack.pop();
-                    res[i] = i1;
+                    int pop = stack.pop();
+                    ans[pop] = i - pop;
                 }
                 stack.push(i);
             }
-
-            return res;
+            return ans;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

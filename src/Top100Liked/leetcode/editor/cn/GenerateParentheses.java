@@ -48,6 +48,7 @@ public class GenerateParentheses {
         List<String> result2 = solution.generateParenthesis(n2);
         System.out.println("Test case 2: " + (expected2.equals(result2) ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<String> generateParenthesis(int n) {
@@ -57,19 +58,6 @@ public class GenerateParentheses {
         }
 
         private void dfs(int n, StringBuilder sb, int left, int right, List<String> ans) {
-            if (sb.length() == 2 * n) {
-                ans.add(sb.toString());
-            }
-            if (left < n) {
-                sb.append("(");
-                dfs(n, sb, left + 1, right, ans);
-                sb.deleteCharAt(sb.length() - 1);
-            }
-            if (left > right) {
-                sb.append(")");
-                dfs(n, sb, left, right + 1, ans);
-                sb.deleteCharAt(sb.length() - 1);
-            }
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

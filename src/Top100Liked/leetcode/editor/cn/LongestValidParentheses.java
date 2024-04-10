@@ -67,20 +67,21 @@ public class LongestValidParentheses {
         int result3 = solution.longestValidParentheses(s3);
         System.out.println("Test case 3: " + (expected3 == result3 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int longestValidParentheses(String s) {
             Deque<Integer> stack = new ArrayDeque<>();
             stack.push(-1);
             int res = 0;
-            char[] charArray = s.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                if (charArray[i] == ')') {
+            for (int i = 0; i < s.toCharArray().length; i++) {
+                if (s.charAt(i) == ')') {
                     stack.pop();
                     if (stack.isEmpty()) {
                         stack.push(i);
                     } else {
-                        res = Math.max(res, i - stack.peek());
+                        int k = i - stack.peek();
+                        res = Math.max(k, res);
                     }
                 } else {
                     stack.push(i);

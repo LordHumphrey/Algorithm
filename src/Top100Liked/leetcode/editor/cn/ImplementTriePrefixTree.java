@@ -60,9 +60,8 @@ public class ImplementTriePrefixTree {
     // leetcode submit region begin(Prohibit modification and deletion)
 
     class Trie {
-
         class TrieNode {
-            boolean isEnd = false;
+            boolean isEnd;
             TrieNode[] children = new TrieNode[26];
         }
 
@@ -73,45 +72,45 @@ public class ImplementTriePrefixTree {
         }
 
         public void insert(String word) {
-            TrieNode temp = this.root;
+            TrieNode dummy = this.root;
             char[] charArray = word.toCharArray();
-            for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
-                int j = c - 'a';
-                if (temp.children[j] == null) {
-                    temp.children[j] = new TrieNode();
+            for (char value : charArray) {
+                int c = value - 'a';
+                if (dummy.children[c] == null) {
+                    dummy.children[c] = new TrieNode();
                 }
-                temp = temp.children[j];
+                dummy = dummy.children[c];
             }
-            temp.isEnd = true;
+            dummy.isEnd = true;
         }
 
         public boolean search(String word) {
-            TrieNode temp = this.root;
+            TrieNode dummy = this.root;
             char[] charArray = word.toCharArray();
             for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
-                int j = c - 'a';
-                if (temp.children[j] == null) {
+                char value = charArray[i];
+                int c = value - 'a';
+                if (dummy.children[c] == null) {
                     return false;
                 }
-                temp = temp.children[j];
+                dummy = dummy.children[c];
             }
-            return temp != null && temp.isEnd;
+            return dummy.isEnd;
         }
 
         public boolean startsWith(String prefix) {
-            TrieNode temp = this.root;
+            TrieNode dummy = this.root;
             char[] charArray = prefix.toCharArray();
             for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
-                int j = c - 'a';
-                if (temp.children[j] == null) {
+                char value = charArray[i];
+                int c = value - 'a';
+                if (dummy.children[c] == null) {
                     return false;
                 }
-                temp = temp.children[j];
+                dummy = dummy.children[c];
             }
             return true;
+
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -62,35 +62,30 @@ public class W3tCBm {
 
         // Test case 1
         int[] result1 = solution.countBits(2);
-        int[] expected1 = new int[] {0, 1, 1};
+        int[] expected1 = new int[]{0, 1, 1};
         System.out.println(Arrays.equals(result1, expected1) ? "Test case 1 passed" : "Test case 1 failed");
 
         // Test case 2
         int[] result2 = solution.countBits(5);
-        int[] expected2 = new int[] {0, 1, 1, 2, 1, 2};
+        int[] expected2 = new int[]{0, 1, 1, 2, 1, 2};
         System.out.println(Arrays.equals(result2, expected2) ? "Test case 2 passed" : "Test case 2 failed");
 
         // Test case 3
         int[] result3 = solution.countBits(0);
-        int[] expected3 = new int[] {0};
+        int[] expected3 = new int[]{0};
         System.out.println(Arrays.equals(result3, expected3) ? "Test case 3 passed" : "Test case 3 failed");
 
         // Test case 4
         int[] result4 = solution.countBits(1);
-        int[] expected4 = new int[] {0, 1};
+        int[] expected4 = new int[]{0, 1};
         System.out.println(Arrays.equals(result4, expected4) ? "Test case 4 passed" : "Test case 4 failed");
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] countBits(int n) {
             int[] ans = new int[n + 1];
-            for (int i = 0; i < n + 1; i++) {
-                for (int j = 0; j < 32; j++) {
-                    if (((i >> j) & 1) == 1) {
-                        ans[i]++;
-                    }
-                }
-            }
+
             return ans;
         }
     }

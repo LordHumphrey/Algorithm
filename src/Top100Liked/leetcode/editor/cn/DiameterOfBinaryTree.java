@@ -49,19 +49,20 @@ public class DiameterOfBinaryTree {
         System.out.println("Test case 1: " + (result1 == expected1 ? "Passed" : "Failed"));
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {
@@ -73,13 +74,7 @@ public class DiameterOfBinaryTree {
         }
 
         private int dfs(TreeNode root) {
-            if (root == null) {
-                return 0;
-            }
-            int left = dfs(root.left);
-            int right = dfs(root.right);
-            ans = Math.max(left + +right + 1, ans);
-            return Math.max(left, right) + 1;
+            return 0;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

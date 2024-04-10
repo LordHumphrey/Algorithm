@@ -59,33 +59,38 @@ public class PalindromePartitioning {
         List<List<String>> result3 = solution.partition(s3);
         System.out.println("Test case 3: " + (result3.equals(expected3) ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<String>> partition(String s) {
-            List<List<String>> ans = new ArrayList<>();
-            dfs(s, ans, 0, new ArrayDeque<>());
-            return ans;
+            List<List<String>> res = new ArrayList<>();
+            dfs(s, 0, res, new ArrayDeque<String>());
+            return res;
         }
 
-        private void dfs(String s, List<List<String>> ans, int start, Deque<String> path) {
-            if (s.length() == start) {
-                ans.add(new ArrayList<>(path));
+        private void dfs(String s, int start, List<List<String>> res, Deque<String> path) {
+            if (start == s.length()) {
+                res.add(new ArrayList<>(path));
                 return;
             }
             for (int i = start; i < s.length(); i++) {
-                if (isPalindrome(start, i, s)) {
-                    path.addLast(s.substring(start, i + 1));
-                    dfs(s, ans, i + 1, path);
+                String substring = s.substring(start, i + 1);
+                if (isValid(substring)) {
+                    path.addLast(substring);
+                    dfs(s, i + 1, res, path);
                     path.removeLast();
                 }
             }
         }
 
-        private boolean isPalindrome(int left, int right, String s) {
-            while (left < right) {
-                if (s.charAt(left++) != s.charAt(right--)) {
+        private boolean isValid(String s) {
+            int left = 0, right = s.length() - 1;
+            while (left <= right) {
+                if (s.charAt(left) != s.charAt(right)) {
                     return false;
                 }
+                left++;
+                right--;
             }
             return true;
         }

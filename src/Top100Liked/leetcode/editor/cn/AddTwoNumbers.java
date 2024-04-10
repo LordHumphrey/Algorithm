@@ -50,10 +50,7 @@ public class AddTwoNumbers {
         ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
         ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
         ListNode result1 = solution.addTwoNumbers(l1, l2);
-        System.out.println(
-                (result1.val == 7 && result1.next.val == 0 && result1.next.next.val == 8)
-                        ? "Test case 1 passed"
-                        : "Test case 1 failed");
+        System.out.println((result1.val == 7 && result1.next.val == 0 && result1.next.next.val == 8) ? "Test case 1 passed" : "Test case 1 failed");
 
         // Test case 2
         ListNode l3 = new ListNode(0);
@@ -62,56 +59,29 @@ public class AddTwoNumbers {
         System.out.println((result2.val == 0) ? "Test case 2 passed" : "Test case 2 failed");
 
         // Test case 3
-        ListNode l5 = new ListNode(
-                9,
-                new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
+        ListNode l5 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
         ListNode l6 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
         ListNode result3 = solution.addTwoNumbers(l5, l6);
-        System.out.println(
-                (result3.val == 8
-                                && result3.next.val == 9
-                                && result3.next.next.val == 9
-                                && result3.next.next.next.val == 9
-                                && result3.next.next.next.next.val == 0
-                                && result3.next.next.next.next.next.val == 0
-                                && result3.next.next.next.next.next.next.val == 0
-                                && result3.next.next.next.next.next.next.next.val == 1)
-                        ? "Test case 3 passed"
-                        : "Test case 3 failed");
+        System.out.println((result3.val == 8 && result3.next.val == 9 && result3.next.next.val == 9 && result3.next.next.next.val == 9 && result3.next.next.next.next.val == 0 && result3.next.next.next.next.next.val == 0 && result3.next.next.next.next.next.next.val == 0 && result3.next.next.next.next.next.next.next.val == 1) ? "Test case 3 passed" : "Test case 3 failed");
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for singly-linked list.
      * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode() {}
-     *     ListNode(int val) { this.val = val; }
-     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            ListNode r1 = l1, r2 = l2, dummyNode = new ListNode(0), cur = dummyNode;
-            int carry = 0;
-            while (r1 != null || r2 != null) {
-                int x = r1 == null ? 0 : r1.val;
-                int y = r2 == null ? 0 : r2.val;
-                int sum = x + y + carry;
-                carry = sum / 10;
-                cur.next = new ListNode(sum % 10);
-                cur = cur.next;
-                if (r1 != null) {
-                    r1 = r1.next;
-                }
-                if (r2 != null) {
-                    r2 = r2.next;
-                }
-            }
-            if (carry > 0) {
-                cur.next = new ListNode(carry);
-            }
-            return dummyNode.next;
+            ListNode dummyNode1 = l1, dummyNode2 = l2, res = new ListNode(0), dummyRes = res;
+           
+            return res.next;
+
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

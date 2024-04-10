@@ -70,49 +70,30 @@ public class SearchInRotatedSortedArray {
         int expected3 = -1;
         int result3 = solution.search(nums3, target3);
         System.out.println("Test case 3: " + (expected3 == result3 ? "Passed" : "Failed"));
+        // Test case 4
+        int[] nums4 = {1, 3};
+        int target4 = 3;
+        int expected4 = 1;
+        int result4 = solution.search(nums4, target4);
+        System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int search(int[] nums, int target) {
-            int i = nums.length - 1;
-            int min = searchMin(nums, target, 0, i);
-            if (target == nums[min]) {
-                return min;
-            } else if (target > nums[i]) {
-                return searchTarget(nums, target, 0, min);
-            } else {
-                return searchTarget(nums, target, min, i);
-            }
-        }
 
-        private int searchTarget(int[] nums, int target, int left, int right) {
-            int mid = left + (right - left) / 2;
-            while (left <= right) {
-                mid = left + (right - left) / 2;
-                if (nums[mid] > target) {
-                    right = mid - 1;
-                } else if (nums[mid] < target) {
-                    left = mid + 1;
-                } else if (nums[mid] == target) {
-                    return mid;
-                }
-            }
             return -1;
         }
 
-        private int searchMin(int[] nums, int target, int left, int right) {
-            int mid = left + (right - left) / 2;
-            while (left <= right) {
-                mid = left + (right - left) / 2;
-                if (nums[mid] > nums[right]) {
-                    left = mid + 1;
-                } else if (nums[mid] < nums[right]) {
-                    right = mid;
-                } else {
-                    break;
-                }
-            }
-            return right;
+        private int findTarget(int[] nums, int target, int left, int right) {
+
+            return -1;
+
+        }
+
+        private int findMin(int[] nums) {
+
+            return -1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
