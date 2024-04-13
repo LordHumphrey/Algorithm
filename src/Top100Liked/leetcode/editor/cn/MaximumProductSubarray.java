@@ -79,6 +79,7 @@ public class MaximumProductSubarray {
                 } else {
                     dp[i][0] = Math.min(dp[i - 1][0] * num, dp[i][0]);
                     dp[i][1] = Math.max(dp[i - 1][1] * num, dp[i][1]);
+
                 }
             }
             return Arrays.stream(dp).mapToInt(arr -> arr[1]).max().getAsInt();

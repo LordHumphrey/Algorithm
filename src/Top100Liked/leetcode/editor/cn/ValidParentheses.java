@@ -44,9 +44,6 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 public class ValidParentheses {
     public static void main(String[] args) {
         Solution solution = new ValidParentheses().new Solution();
@@ -67,33 +64,11 @@ public class ValidParentheses {
             System.out.println("Test failed. Expected " + expected + " but got " + actual);
         }
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isValid(String s) {
-            char[] charArray = s.toCharArray();
-            Deque<Character> stack = new ArrayDeque<>();
-            for (int i = 0; i < charArray.length; i++) {
-                char c = charArray[i];
-                if (c == '(' || c == '{' || c == '[') {
-                    stack.push(c);
-                } else {
-                    if (stack.isEmpty()) {
-                        return false;
-                    } else {
-                        char pop = stack.pop();
-                        if (c == ')' && pop != '(') {
-                            return false;
-                        }
-                        if (c == '}' && pop != '{') {
-                            return false;
-                        }
-                        if (c == ']' && pop != '[') {
-                            return false;
-                        }
-                    }
-                }
-            }
-            return stack.isEmpty();
+            return false;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -34,61 +34,41 @@
 package Top100Liked.leetcode.editor.cn;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
 
 public class TopKFrequentElements {
     public static void main(String[] args) {
         Solution solution = new TopKFrequentElements().new Solution();
 
         // Test case 1
-        int[] result1 = solution.topKFrequent(new int[] {1, 1, 1, 2, 2, 3}, 2);
-        int[] expected1 = new int[] {1, 2};
+        int[] result1 = solution.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
+        int[] expected1 = new int[]{1, 2};
         Arrays.sort(result1);
         Arrays.sort(expected1);
         System.out.println(Arrays.equals(result1, expected1) ? "Test case 1 passed" : "Test case 1 failed");
 
         // Test case 2
-        int[] result2 = solution.topKFrequent(new int[] {1}, 1);
-        int[] expected2 = new int[] {1};
+        int[] result2 = solution.topKFrequent(new int[]{1}, 1);
+        int[] expected2 = new int[]{1};
         System.out.println(Arrays.equals(result2, expected2) ? "Test case 2 passed" : "Test case 2 failed");
 
         // Test case 3
-        int[] result3 = solution.topKFrequent(new int[] {4, 1, -1, 2, -1, 2, 3}, 2);
-        int[] expected3 = new int[] {-1, 2};
+        int[] result3 = solution.topKFrequent(new int[]{4, 1, -1, 2, -1, 2, 3}, 2);
+        int[] expected3 = new int[]{-1, 2};
         Arrays.sort(result3);
         Arrays.sort(expected3);
         System.out.println(Arrays.equals(result3, expected3) ? "Test case 3 passed" : "Test case 3 failed");
+        // Test case 4
+        int[] result4 = solution.topKFrequent(new int[]{2, 3, 4, 1, 4, 0, 4, -1, -2, -1}, 2);
+        int[] expected4 = new int[]{4, -1};
+        Arrays.sort(result4);
+        Arrays.sort(expected4);
+        System.out.println(Arrays.equals(result4, expected4) ? "Test case 4 passed" : "Test case 4 failed");
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] topKFrequent(int[] nums, int k) {
-            HashMap<Integer, Integer> hashMap = new HashMap<>(k);
-            PriorityQueue<Integer> queue = new PriorityQueue<>(k, new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return hashMap.get(o1) - hashMap.get(o2);
-                }
-            });
-            for (int i = 0; i < nums.length; i++) {
-                hashMap.put(nums[i], hashMap.getOrDefault(nums[i], 0) + 1);
-            }
-            for (Integer i : hashMap.keySet()) {
-                if (queue.size() < k) {
-                    queue.add(i);
-                } else if (hashMap.get(queue.peek()) < hashMap.get(i)) {
-                    queue.poll();
-                    queue.add(i);
-                }
-            }
-            int[] res = new int[k];
-            int idx = 0;
-            while (!queue.isEmpty()) {
-                res[idx] = queue.poll();
-                idx++;
-            }
-            return res;
+            return new int[]{1};
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

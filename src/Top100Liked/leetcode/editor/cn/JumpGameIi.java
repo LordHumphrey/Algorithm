@@ -79,9 +79,7 @@ public class JumpGameIi {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int jump(int[] nums) {
-            int cnt = 0, end = 0, maxPos = 0;
-
-            return cnt;
+            return -1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

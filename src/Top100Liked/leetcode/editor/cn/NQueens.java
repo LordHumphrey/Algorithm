@@ -69,64 +69,56 @@ public class NQueens {
         List<List<String>> result4 = solution.solveNQueens(9);
         System.out.println("Test case 4: n = 9, expected 352 solutions, got " + result4.size() + " solution(s).");
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<String>> solveNQueens(int n) {
-            char[][] arr = new char[n][n];
-            for (char[] chars : arr) {
+            char[][] grid = new char[n][n];
+            for (char[] chars : grid) {
                 Arrays.fill(chars, '.');
             }
             List<List<String>> res = new ArrayList<>();
-            dfs(arr, 0, 0, n, res);
+            dfs(0, n, grid, res);
             return res;
         }
 
-        private void dfs(char[][] arr, int row, int col, int n, List<List<String>> res) {
+        private void dfs(int row, int n, char[][] grid, List<List<String>> res) {
             if (row == n) {
-                res.add(convertCharMatrixToNQueensFormat(arr));
+                List<String> rowRes = new ArrayList<>();
+                for (char[] chars : grid) {
+                    rowRes.add(new String(chars));
+                }
+                res.add(rowRes);
                 return;
             }
-            for (int i = row; i < n; i++) {
-                if (isValid(i, col, arr, n)) {
-                    arr[i][col] = 'Q';
-                    dfs(arr, row, col + 1, n, res);
-                    arr[i][col] = '.';
-                }
-            }
-        }
-
-        private List<String> convertCharMatrixToNQueensFormat(char[][] res) {
-            List<String> temp = new ArrayList<>();
-            for (char[] re : res) {
-                temp.add(new String(re));
-            }
-            return temp;
-        }
-
-        private boolean isValid(int row, int col, char[][] arr, int n) {
             for (int i = 0; i < n; i++) {
-                if (arr[row][i] == 'Q') {
-                    return false;
+                if (validQueens(row, i, n, grid)) {
+                    grid[row][i] = 'Q';
+                    dfs(row + 1, n, grid, res);
+                    grid[row][i] = '.';
                 }
-                if (arr[i][col] == 'Q') {
+            }
+        }
+
+        private boolean validQueens(int row, int col, int n, char[][] grid) {
+            for (int i = 0; i < row; i++) {
+                if (grid[i][col] == 'Q') {
                     return false;
                 }
             }
             for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-                if (arr[i][j] == 'Q') {
+                if (grid[i][j] == 'Q') {
                     return false;
                 }
             }
             for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-                if (arr[i][j] == 'Q') {
+                if (grid[i][j] == 'Q') {
                     return false;
                 }
             }
-
             return true;
         }
     }
-
     // leetcode submit region end(Prohibit modification and deletion)
 
 }

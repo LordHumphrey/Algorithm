@@ -94,20 +94,13 @@ public class CopyListWithRandomPointer {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public Node copyRandomList(Node head) {
-            Node cur = new Node(0);
-            cur = head;
             HashMap<Node, Node> map = new HashMap<>();
+            Node cur = head;
             while (cur != null) {
                 Node newNode = new Node(cur.val);
                 map.put(cur, newNode);
                 cur = cur.next;
             }
-            //            cur = head;
-            //            while (cur != null) {
-            //                map.get(cur).next = map.get(cur.next);
-            //                map.get(cur).random = map.get(cur.random);
-            //                cur = cur.next;
-            //            }
             for (Node node : map.keySet()) {
                 map.get(node).next = map.get(node.next);
                 map.get(node).random = map.get(node.random);

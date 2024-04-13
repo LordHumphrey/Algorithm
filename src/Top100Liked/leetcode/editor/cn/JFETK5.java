@@ -73,21 +73,21 @@ public class JFETK5 {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String addBinary(String a, String b) {
-            int carry = 0;
             int aLen = a.length() - 1;
             int bLen = b.length() - 1;
             StringBuilder stringBuilder = new StringBuilder();
+            int carry = 0;
             while (aLen >= 0 || bLen >= 0) {
-                int aInt = aLen >= 0 ? a.charAt(aLen) - '0' : 0;
-                int bInt = bLen >= 0 ? b.charAt(bLen) - '0' : 0;
-                int sum = aInt + bInt + carry;
-                stringBuilder.append(sum % 2);
+                int x = aLen >= 0 ? a.charAt(aLen) - '0' : 0;
+                int y = bLen >= 0 ? b.charAt(bLen) - '0' : 0;
+                int sum = x + y + carry;
                 carry = sum / 2;
+                stringBuilder.append(sum % 2);
                 aLen--;
                 bLen--;
             }
             if (carry == 1) {
-                stringBuilder.append('1');
+                stringBuilder.append(carry);
             }
             return stringBuilder.reverse().toString();
         }

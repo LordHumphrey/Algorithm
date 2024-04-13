@@ -71,6 +71,7 @@ public class CoinChange {
         int result4 = solution.coinChange(coins4, amount4);
         System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int coinChange(int[] coins, int amount) {
@@ -83,12 +84,6 @@ public class CoinChange {
                     dp[0][i] = Integer.MAX_VALUE;
                 }
             }
-            //                    if (j >= coin && dp[i][j - coin] != Integer.MAX_VALUE) {
-            //                        dp[i][j] = Math.min(dp[i][j - coin] + 1, dp[i - 1][j]);
-            //                    } else {
-            //                        dp[i][j] = dp[i - 1][j];
-            //                    }
-
             for (int i = 1; i < length; i++) {
                 int coin = coins[i];
                 for (int j = 0; j <= amount; j++) {
