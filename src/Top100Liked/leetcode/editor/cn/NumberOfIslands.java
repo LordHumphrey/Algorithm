@@ -51,29 +51,17 @@ public class NumberOfIslands {
         Solution solution = new NumberOfIslands().new Solution();
 
         // Test case 1
-        char[][] grid1 = {
-                {'1', '1', '1', '1', '0'},
-                {'1', '1', '0', '1', '0'},
-                {'1', '1', '0', '0', '0'},
-                {'0', '0', '0', '0', '0'}
-        };
+        char[][] grid1 = {{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}};
         int result1 = solution.numIslands(grid1);
         System.out.println(result1 == 1 ? "Test case 1 passed" : "Test case 1 failed");
 
         // Test case 2
-        char[][] grid2 = {
-                {'1', '1', '0', '0', '0'},
-                {'1', '1', '0', '0', '0'},
-                {'0', '0', '1', '0', '0'},
-                {'0', '0', '0', '1', '1'}
-        };
+        char[][] grid2 = {{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
         int result2 = solution.numIslands(grid2);
         System.out.println(result2 == 3 ? "Test case 2 passed" : "Test case 2 failed");
 
         // Test case 3
-        char[][] grid3 = {
-                {'1', '0', '1', '1', '0', '1', '1'}
-        };
+        char[][] grid3 = {{'1', '0', '1', '1', '0', '1', '1'}};
         int result3 = solution.numIslands(grid3);
         System.out.println(result3 == 3 ? "Test case 3 passed" : "Test case 3 failed");
     }
@@ -82,9 +70,10 @@ public class NumberOfIslands {
     class Solution {
         public int numIslands(char[][] grid) {
             int ans = 0;
-
+         
             return ans;
         }
+
 
     }
 //leetcode submit region end(Prohibit modification and deletion)

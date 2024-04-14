@@ -36,7 +36,7 @@
 //
 // Related Topics 数组 二分查找 矩阵 👍 907 👎 0
 
-package codingInterviewsSpecial.leetcode.editor.cn;
+package Top100Liked.leetcode.editor.cn;
 
 public class SearchA2dMatrix {
     public static void main(String[] args) {
@@ -47,32 +47,35 @@ public class SearchA2dMatrix {
         boolean result = solution.searchMatrix(matrix, target);
         System.out.println(result); // --> 返回 true
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean searchMatrix(int[][] matrix, int target) {
             int row = matrix.length - 1, col = matrix[0].length - 1;
-            int left = 0, right = row - 1, mid = 0;
+            int left = 0, right = row, mid = 0;
             while (left <= right) {
                 mid = left + (right - left) / 2;
-                if (target >= matrix[mid][0] && matrix[mid][col] >= target) {
+                if (matrix[mid][0] == target || matrix[mid][col] == target) {
+                    return true;
+                } else if (matrix[mid][0] <= target && matrix[mid][col] >= target) {
                     row = mid;
                     break;
-                } else if (target > matrix[mid][0]) {
-                    left = mid + 1;
-                } else if (target < matrix[mid][0]) {
+                } else if (matrix[mid][0] > target) {
                     right = mid - 1;
+                } else if (matrix[mid][col] < target) {
+                    left = mid + 1;
                 }
             }
             left = 0;
             right = col;
             while (left <= right) {
                 mid = left + (right - left) / 2;
-                if (target == matrix[row][mid]) {
+                if (matrix[row][mid] == target) {
                     return true;
-                } else if (target > matrix[row][mid]) {
-                    left = mid + 1;
-                } else if (target < matrix[row][mid]) {
+                } else if (matrix[row][mid] > target) {
                     right = mid - 1;
+                } else {
+                    left = mid + 1;
                 }
             }
             return false;
