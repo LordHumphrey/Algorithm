@@ -53,7 +53,6 @@ public class PartitionEqualSubsetSum {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canPartition(int[] nums) {
-
             int sum = Arrays.stream(nums).sum();
             if (sum % 2 != 0) {
                 return false;

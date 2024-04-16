@@ -106,38 +106,38 @@ public class MergeKSortedLists {
         }
 
         private ListNode mergeKListsDfs(ListNode[] lists, int start, int end) {
-            int arrLen = end - start;
-            if (arrLen == 0) {
+            int len = end - start, mid = start + len / 2;
+            if (len <= 0) {
                 return null;
             }
-            if (arrLen == 1) {
+            if (len == 1) {
                 return lists[start];
             }
-            int mid = start + arrLen / 2;
             ListNode left = mergeKListsDfs(lists, start, mid);
             ListNode right = mergeKListsDfs(lists, mid, end);
             return merge2Lists(left, right);
         }
 
         private ListNode merge2Lists(ListNode list1, ListNode list2) {
-            ListNode head = new ListNode(), dummy = head;
-            while (list1 != null && list2 != null) {
-                if (list1.val > list2.val) {
-                    dummy.next = list2;
-                    list2 = list2.next;
+            ListNode node1 = list1, node2 = list2, res = new ListNode(), dummy = res;
+            while (node1 != null && node2 != null) {
+                if (node1.val < node2.val) {
+                    dummy.next = node1;
+                    node1 = node1.next;
                 } else {
-                    dummy.next = list1;
-                    list1 = list1.next;
+                    dummy.next = node2;
+                    node2 = node2.next;
                 }
                 dummy = dummy.next;
             }
-            if (list1 != null) {
-                dummy.next = list1;
+            if (node1 != null) {
+                dummy.next = node1;
             }
-            if (list2 != null) {
-                dummy.next = list2;
+            if (node2 != null) {
+                dummy.next = node2;
             }
-            return head.next;
+
+            return res.next;
         }
     }
 
