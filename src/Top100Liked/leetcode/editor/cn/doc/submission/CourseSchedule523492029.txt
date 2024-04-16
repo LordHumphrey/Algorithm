@@ -1,0 +1,33 @@
+    class Solution {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            int[] inDegrees = new int[numCourses];
+            List<List<Integer>> adjacency = new ArrayList<>();
+            for (int i = 0; i < numCourses; i++) {
+                adjacency.add(new ArrayList<>());
+            }
+            for (int[] prerequisite : prerequisites) {
+                inDegrees[prerequisite[0]]++;
+                adjacency.get(prerequisite[1]).add(prerequisite[0]);
+            }
+            ArrayDeque<Integer> queue = new ArrayDeque<>();
+            for (int i = 0; i < inDegrees.length; i++) {
+                if (inDegrees[i] == 0) {
+                    queue.addLast(i);
+                }
+            }
+            while ((!queue.isEmpty())) {
+                int first = queue.removeFirst();
+                numCourses--;
+                for (Integer i : adjacency.get(first)) {
+                    inDegrees[i]--;
+                    if (inDegrees[i] == 0) {
+                        queue.addLast(i);
+                    }
+                }
+            }
+            return 0 == numCourses;
+        }
+    }
+
+//runtime:4 ms
+//memory:43.5 MB

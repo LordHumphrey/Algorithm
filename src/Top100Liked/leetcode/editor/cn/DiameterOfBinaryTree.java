@@ -74,7 +74,13 @@ public class DiameterOfBinaryTree {
         }
 
         private int dfs(TreeNode root) {
-            return 0;
+            if (root == null) {
+                return 0;
+            }
+            int left = dfs(root.left);
+            int right = dfs(root.right);
+            ans = Math.max(left + right + 1, ans);
+            return Math.max(left, right) + 1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

@@ -90,7 +90,7 @@ public class CoinChange {
                     dp[i][j] = dp[i - 1][j];
                     for (int k = 1; k * coin <= j; k++) {
                         if (j >= coin && dp[i][j - k * coin] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i][j - k * coin] + k, dp[i][j]);
+                            dp[i][j] = Math.min(dp[i][j], dp[i][j - k * coin] + k);
                         } else {
                             dp[i][j] = dp[i][j];
                         }

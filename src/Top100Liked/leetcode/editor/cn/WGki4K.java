@@ -55,24 +55,20 @@ public class WGki4K {
         int result2 = solution.singleNumber(nums2);
         System.out.println("Test case 2: " + (expected2 == result2 ? "Passed" : "Failed"));
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int singleNumber(int[] nums) {
-            int[] result = new int[32];
+            int ans = 0;
+            int[] bitSum = new int[32];
             for (int num : nums) {
                 for (int i = 0; i < 32; i++) {
-                    if ((num >> i & 1) == 1) {
-                        result[i]++;
-                    }
+                    bitSum[i] += (num >> (31 - i) & 1);
                 }
             }
-            int ans = 0;
-            for (int i = 0; i < result.length; i++) {
-                if (result[i] % 3 == 1) {
-                    ans += 1 << i;
-                }
+            for (int j : bitSum) {
+                ans = (ans << 1) | j % 3;
             }
-
             return ans;
         }
     }

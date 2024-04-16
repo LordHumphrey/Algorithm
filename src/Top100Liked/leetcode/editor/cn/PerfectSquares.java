@@ -52,8 +52,8 @@ public class PerfectSquares {
                 list.add(idx * idx);
                 idx++;
             }
-            Integer first = list.getFirst();
             int size = list.size();
+            Integer first = list.getFirst();
             int[][] dp = new int[size][n + 1];
             for (int i = 0; i <= n; i++) {
                 if (i % first == 0) {
@@ -63,30 +63,28 @@ public class PerfectSquares {
                 }
             }
             for (int i = 1; i < size; i++) {
-                int t = list.get(i);
+                Integer t = list.get(i);
                 for (int j = 0; j <= n; j++) {
                     dp[i][j] = dp[i - 1][j];
-                    for (int k = 1; k * t <= j; k++) {
-                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i - 1][j - k * t] + k, dp[i][j]);
-                        } else {
-                            dp[i][j] = dp[i - 1][j];
+                    for (int k = 0; k * t <= j; k++) {
+                        if (dp[i][j - k * t] != Integer.MAX_VALUE) {
+                            dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - k * t] + k);
                         }
                     }
                 }
             }
-            return dp[size - 1][n] == Integer.MAX_VALUE ? -1 : dp[size - 1][n];
+            return dp[size - 1][n] == Integer.MAX_VALUE ? 0 : dp[size - 1][n];
         }
 
         private int dfs(int n) {
             if (n == 0) {
                 return 0;
             }
-            int res = Integer.MAX_VALUE;
+            int ans = Integer.MAX_VALUE;
             for (int i = 1; i * i <= n; i++) {
-                res = Math.min(res, dfs(n - i * i) + 1);
+                ans = Math.min(ans, dfs(n - i * i) + 1);
             }
-            return res;
+            return ans;
         }
     }
 
