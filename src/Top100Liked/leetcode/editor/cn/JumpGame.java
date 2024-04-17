@@ -52,16 +52,16 @@ public class JumpGame {
         boolean result3 = solution.canJump(nums3);
         System.out.println(result3 ? "Test case 3 passed" : "Test case 3 failed");
     }
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canJump(int[] nums) {
             int cnt = 0;
             for (int i = 0; i < nums.length; i++) {
-                if (cnt >= i) {
-                    cnt = Math.max(cnt, i + nums[i]);
-                } else {
+                if (cnt < i) {
                     return false;
                 }
+                cnt = Math.max(cnt, i + nums[i]);
             }
             return true;
         }

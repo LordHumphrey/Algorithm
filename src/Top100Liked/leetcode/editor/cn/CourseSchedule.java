@@ -79,6 +79,7 @@ public class CourseSchedule {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canFinish(int numCourses, int[][] prerequisites) {
+            int length = prerequisites.length;
             int[] inDegree = new int[numCourses];
             List<List<Integer>> adj = new ArrayList<>();
             for (int i = 0; i < numCourses; i++) {

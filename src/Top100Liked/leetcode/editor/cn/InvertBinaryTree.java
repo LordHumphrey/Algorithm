@@ -88,22 +88,21 @@ public class InvertBinaryTree {
             if (root == null) {
                 return null;
             }
-
             Deque<TreeNode> queue = new ArrayDeque<>();
             queue.addLast(root);
             while (!queue.isEmpty()) {
                 int size = queue.size();
                 for (int i = 0; i < size; i++) {
-                    TreeNode treeNode = queue.removeFirst();
-                    if (treeNode.left != null) {
-                        queue.addLast(treeNode.left);
+                    TreeNode first = queue.removeFirst();
+                    if (first.left != null) {
+                        queue.addLast(first.left);
                     }
-                    if (treeNode.right != null) {
-                        queue.addLast(treeNode.right);
+                    if (first.right != null) {
+                        queue.addLast(first.right);
                     }
-                    TreeNode temp = treeNode.left;
-                    treeNode.left = treeNode.right;
-                    treeNode.right = temp;
+                    TreeNode temp = first.left;
+                    first.left = first.right;
+                    first.right = temp;
                 }
             }
             return root;

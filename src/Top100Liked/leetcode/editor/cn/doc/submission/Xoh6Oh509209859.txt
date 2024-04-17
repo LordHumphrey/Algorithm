@@ -1,0 +1,38 @@
+    class Solution {
+        public int divide(int a, int b) {
+            if (a == 0) {
+                return 0;
+            }
+            if (Integer.MIN_VALUE == a && -1 == b) {
+                return Integer.MAX_VALUE;
+            }
+            int negative = 2;
+            if (a > 0) {
+                a = -a;
+                negative--;
+            }
+            if (b > 0) {
+                b = -b;
+                negative--;
+            }
+            int i = divideCore(a, b);
+            return negative == 1 ? -i : i;
+        }
+
+        private int divideCore(int dividend, int divisor) {
+            int result = 0;
+            while (dividend <= divisor) {
+                int value = divisor, quotient = 1;
+                while (value >= (Integer.MIN_VALUE >> 1) && dividend <= value + value) {
+                    value = value + value;
+                    quotient = quotient + quotient;
+                }
+                dividend = dividend - value;
+                result = result + quotient;
+            }
+            return result;
+        }
+    }
+
+//runtime:0 ms
+//memory:39.9 MB
