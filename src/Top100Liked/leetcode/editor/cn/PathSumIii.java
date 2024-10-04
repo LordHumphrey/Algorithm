@@ -82,24 +82,10 @@ public class PathSumIii {
         HashMap<Long, Integer> prefixSum;
 
         public int pathSum(TreeNode root, int targetSum) {
-            prefixSum = new HashMap<>();
-            prefixSum.put(0L, 1);
-            return dfs(root, targetSum, 0L, prefixSum);
+            return 1;
         }
 
-        private int dfs(TreeNode root, int targetSum, Long curSum, HashMap<Long, Integer> map) {
-            if (root == null) {
-                return 0;
-            }
-            int ans = 0;
-            curSum += root.val;
-            ans += map.getOrDefault(curSum - targetSum, 0);
-            map.put(curSum, map.getOrDefault(curSum, 0) + 1);
-            ans += dfs(root.left, targetSum, curSum, map);
-            ans += dfs(root.right, targetSum, curSum, map);
-            map.put(curSum, map.get(curSum) - 1);
-            return ans;
-        }
     }
-    // leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 }
+

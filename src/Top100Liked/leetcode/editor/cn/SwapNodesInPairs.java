@@ -89,19 +89,20 @@ public class SwapNodesInPairs {
             ListNode dummy = new ListNode(), pre = dummy;
             dummy.next = head;
             while (head != null && head.next != null) {
-                ListNode first = head;
-                ListNode second = head.next;
+                ListNode first = head, second = head.next;
 
                 pre.next = second;
                 first.next = second.next;
                 second.next = first;
 
                 pre = first;
-                head = first.next;
+                head = head.next;
             }
             return dummy.next;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
 
+
+//leetcode submit region end(Prohibit modification and deletion)
 }
+

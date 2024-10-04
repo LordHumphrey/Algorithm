@@ -38,10 +38,7 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Permutations {
     public static void main(String[] args) {
@@ -70,8 +67,12 @@ public class Permutations {
     class Solution {
         public List<List<Integer>> permute(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
-
+            permuteDfs(new ArrayDeque<>(), nums, 0, new boolean[nums.length], res);
             return res;
+        }
+
+        private void permuteDfs(Deque<Integer> deque, int[] nums, int start, boolean[] used, List<List<Integer>> res) {
+    
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

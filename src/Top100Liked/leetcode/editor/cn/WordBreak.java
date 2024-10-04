@@ -77,7 +77,7 @@ public class WordBreak {
 
     class Solution {
         public boolean wordBreak(String s, List<String> wordDict) {
-            return false;
+            return true;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

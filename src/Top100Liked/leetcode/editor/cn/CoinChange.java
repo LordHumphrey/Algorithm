@@ -75,29 +75,7 @@ public class CoinChange {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int coinChange(int[] coins, int amount) {
-            int length = coins.length;
-            int[][] dp = new int[length][amount + 1];
-            for (int i = 0; i <= amount; i++) {
-                if (i % coins[0] == 0) {
-                    dp[0][i] = i / coins[0];
-                } else {
-                    dp[0][i] = Integer.MAX_VALUE;
-                }
-            }
-            for (int i = 1; i < length; i++) {
-                int coin = coins[i];
-                for (int j = 0; j <= amount; j++) {
-                    dp[i][j] = dp[i - 1][j];
-                    for (int k = 1; k * coin <= j; k++) {
-                        if (j >= coin && dp[i][j - k * coin] != Integer.MAX_VALUE) {
-                            dp[i][j] = Math.min(dp[i][j], dp[i][j - k * coin] + k);
-                        } else {
-                            dp[i][j] = dp[i][j];
-                        }
-                    }
-                }
-            }
-            return dp[length - 1][amount] == Integer.MAX_VALUE ? -1 : dp[length - 1][amount];
+            return 1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

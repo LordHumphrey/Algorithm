@@ -92,10 +92,10 @@ public class MaximumDepthOfBinaryTree {
         }
 
         private int dfs(TreeNode root) {
-            if (null == root) {
+            if (root == null) {
                 return 0;
             } else {
-                return 1 + Math.max(dfs(root.left), dfs(root.right));
+                return Math.max(dfs(root.left), dfs(root.right)) + 1;
             }
         }
     }

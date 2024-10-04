@@ -35,18 +35,11 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.List;
-
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
     public static void main(String[] args) {
         Solution solution = new ConstructBinaryTreeFromPreorderAndInorderTraversal().new Solution();
-        assertTreeEqual(
-                solution.buildTree(new int[] {3, 9, 20, 15, 7}, new int[] {9, 3, 15, 20, 7}),
-                new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)))); // Test passed
-        assertTreeEqual(solution.buildTree(new int[] {-1}, new int[] {-1}), new TreeNode(-1)); // Test passed
+        assertTreeEqual(solution.buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7}), new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)))); // Test passed
+        assertTreeEqual(solution.buildTree(new int[]{-1}, new int[]{-1}), new TreeNode(-1)); // Test passed
     }
 
     public static void assertTreeEqual(TreeNode actual, TreeNode expected) {
@@ -75,39 +68,25 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {
         public TreeNode buildTree(int[] preorder, int[] inorder) {
-            List<Integer> preorderList = Arrays.stream(preorder).boxed().toList();
-            List<Integer> inorderList = Arrays.stream(inorder).boxed().toList();
-            Deque<Integer> preOrderQueue = new ArrayDeque<>(preorderList);
-            return dfs(inorderList, preOrderQueue, 0, preorder.length - 1);
+            return null;
         }
 
-        public TreeNode dfs(List<Integer> inOrder, Deque<Integer> preOrderQueue, int start, int end) {
-            if (start > end) {
-                return null;
-            }
-            Integer head = preOrderQueue.removeFirst();
-            int idx = inOrder.indexOf(head);
-            TreeNode treeNode = new TreeNode(head);
-            treeNode.left = dfs(inOrder, preOrderQueue, start, idx - 1);
-            treeNode.right = dfs(inOrder, preOrderQueue, idx + 1, end);
-            return treeNode;
-        }
+
     }
-
     // leetcode submit region end(Prohibit modification and deletion)
 
 }

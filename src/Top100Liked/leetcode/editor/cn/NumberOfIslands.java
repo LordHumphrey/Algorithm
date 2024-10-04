@@ -70,10 +70,18 @@ public class NumberOfIslands {
     class Solution {
         public int numIslands(char[][] grid) {
             int ans = 0;
-         
+
             return ans;
         }
 
+        public void numIslandsDfs(char[][] grid, int x, int y) {
+
+
+        }
+
+        private boolean inArea(char[][] grid, int x, int y) {
+            return x < grid.length && x >= 0 && y < grid[0].length && y >= 0;
+        }
 
     }
 //leetcode submit region end(Prohibit modification and deletion)
