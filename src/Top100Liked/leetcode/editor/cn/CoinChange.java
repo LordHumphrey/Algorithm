@@ -49,33 +49,59 @@ public class CoinChange {
         int amount1 = 11;
         int expected1 = 3;
         int result1 = solution.coinChange(coins1, amount1);
-        System.out.println("Test case 1: " + (expected1 == result1 ? "Passed" : "Failed"));
+        System.out.println("Test case 1 - coins: [1, 2, 5], amount: 11 - " + (expected1 == result1 ? "Passed" : "Failed"));
 
         // Test case 2
         int[] coins2 = {2};
         int amount2 = 3;
         int expected2 = -1;
         int result2 = solution.coinChange(coins2, amount2);
-        System.out.println("Test case 2: " + (expected2 == result2 ? "Passed" : "Failed"));
+        System.out.println("Test case 2 - coins: [2], amount: 3 - " + (expected2 == result2 ? "Passed" : "Failed"));
 
         // Test case 3
         int[] coins3 = {1};
         int amount3 = 0;
         int expected3 = 0;
         int result3 = solution.coinChange(coins3, amount3);
-        System.out.println("Test case 3: " + (expected3 == result3 ? "Passed" : "Failed"));
+        System.out.println("Test case 3 - coins: [1], amount: 0 - " + (expected3 == result3 ? "Passed" : "Failed"));
 
+        // Test case 4
         int[] coins4 = {186, 419, 83, 408};
         int amount4 = 6249;
         int expected4 = 20;
         int result4 = solution.coinChange(coins4, amount4);
-        System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
+        System.out.println("Test case 4 - coins: [186, 419, 83, 408], amount: 6249 - " + (expected4 == result4 ? "Passed" : "Failed"));
+
+        // Additional Test case 5
+        int[] coins5 = {2};
+        int amount5 = 3;
+        int expected5 = -1;
+        int result5 = solution.coinChange(coins5, amount5);
+        System.out.println("Test case 5 - coins: [2], amount: 3 - " + (expected5 == result5 ? "Passed" : "Failed"));
     }
+
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 递归的决策过程：
+         * 对于每个硬币，我们有两种选择：
+         * a. 不使用这个硬币：dp[coinIdx + 1][subAmount] = dp[coinIdx][subAmount]
+         * b. 使用这个硬币：dp[coinIdx + 1][subAmount] = dp[coinIdx + 1][subAmount - coin] + 1
+         * <p>
+         * 递归到动态规划的转化：
+         * <p>
+         * dp[coinIdx][subAmount] 表示使用前 coinIdx 个硬币凑成 subAmount 所需的最少硬币数
+         * 外层循环 (coinIdx) 相当于递归的不同层级
+         * 内层循环 (subAmount) 相当于在每个递归层级中尝试不同的剩余金额
+         *
+         * @param coins
+         * @param amount
+         * @return
+         */
         public int coinChange(int[] coins, int amount) {
-            return 1;
+        
+            return -1;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

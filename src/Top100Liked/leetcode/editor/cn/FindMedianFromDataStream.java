@@ -43,6 +43,8 @@
 
 package Top100Liked.leetcode.editor.cn;
 
+import java.util.PriorityQueue;
+
 public class FindMedianFromDataStream {
     public static void main(String[] args) {
         FindMedianFromDataStream outer = new FindMedianFromDataStream();
@@ -67,9 +69,12 @@ public class FindMedianFromDataStream {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class MedianFinder {
+        PriorityQueue<Integer> left;
+        PriorityQueue<Integer> right;
 
 
         public MedianFinder() {
+
         }
 
         public void addNum(int num) {

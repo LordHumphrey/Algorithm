@@ -65,35 +65,27 @@ public class FlattenBinaryTreeToLinkedList {
         }
     }
     // leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode() {}
-     *     TreeNode(int val) { this.val = val; }
-     *     TreeNode(int val, TreeNode left, TreeNode right) {
-     *         this.val = val;
-     *         this.left = left;
-     *         this.right = right;
-     *     }
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
      * }
      */
     class Solution {
-        TreeNode preNode;
+        TreeNode pre;
 
         public void flatten(TreeNode root) {
-            if (null == root) {
-                return;
-            }
-            flatten(root.right);
-            flatten(root.left);
-            if (preNode != null) {
-                root.right = preNode;
-                root.left = null;
-            }
-            preNode = root;
+            return;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

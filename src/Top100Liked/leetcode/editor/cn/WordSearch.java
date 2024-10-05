@@ -44,10 +44,12 @@
 //
 // 进阶：你可以使用搜索剪枝的技术来优化解决方案，使其在 board 更大的情况下可以更快解决问题？ 
 //
-// Related Topics 数组 字符串 回溯 矩阵 👍 1800 👎 0
+// Related Topics 数组 字符串 回溯 矩阵 👍 1884 👎 0
 
 
 package Top100Liked.leetcode.editor.cn;
+
+import java.util.Arrays;
 
 public class WordSearch {
     public static void main(String[] args) {
@@ -56,77 +58,30 @@ public class WordSearch {
         // Test case 1
         char[][] board1 = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         String word1 = "ABCCED";
-        boolean expected1 = true;
-        testExist(solution, board1, word1, expected1);
+        boolean result1 = solution.exist(board1, word1);
+        System.out.println("1-" + (result1 ? "Passed" : "Failed") + "-board: " + Arrays.deepToString(board1) + ", word: " + word1);
 
         // Test case 2
         char[][] board2 = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         String word2 = "SEE";
-        boolean expected2 = true;
-        testExist(solution, board2, word2, expected2);
+        boolean result2 = solution.exist(board2, word2);
+        System.out.println("2-" + (result2 ? "Passed" : "Failed") + "-board: " + Arrays.deepToString(board2) + ", word: " + word2);
 
         // Test case 3
         char[][] board3 = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         String word3 = "ABCB";
-        boolean expected3 = false;
-        testExist(solution, board3, word3, expected3);
+        boolean result3 = solution.exist(board3, word3);
+        System.out.println("3-" + (result3 ? "Passed" : "Failed") + "-board: " + Arrays.deepToString(board3) + ", word: " + word3);
 
         // Add more test cases as needed
     }
 
-    public static void testExist(Solution solution, char[][] board, String word, boolean expected) {
-        boolean result = solution.exist(board, word);
-        if (result == expected) {
-            System.out.println("Test passed.");
-        } else {
-            System.out.println("Test failed. Expected " + expected + " but got " + result);
-        }
-    }
-
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        private int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        private int m, n;
-
         public boolean exist(char[][] board, String word) {
-            m = board.length;
-            n = board[0].length;
-            boolean[][] used = new boolean[m][n];
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (dfsSearch(board, 0, i, j, used, word)) {
-                        return true;
-                    }
-                }
-            }
             return false;
-        }
-
-        private boolean dfsSearch(char[][] board, int pos, int row, int col, boolean[][] used, String word) {
-            if (pos == word.length() - 1) {
-                return board[row][col] == word.charAt(pos);
-            }
-            if (board[row][col] == word.charAt(pos)) {
-                used[row][col] = true;
-                for (int[] direction : directions) {
-                    int newX = row + direction[0];
-                    int newY = col + direction[1];
-                    if (inArea(newX, newY) && !used[newX][newY]) {
-                        if (dfsSearch(board, pos + 1, newX, newY, used, word)) {
-                            return true;
-                        }
-                    }
-                }
-                used[row][col] = false;
-            }
-            return false;
-
-        }
-
-        private boolean inArea(int x, int y) {
-            return x >= 0 && x < m && y >= 0 && y < n;
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
+//leetcode submit region end(Prohibit modification and deletion)
 
 }

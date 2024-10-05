@@ -52,54 +52,53 @@ public class EditDistance {
     public static void main(String[] args) {
         Solution solution = new EditDistance().new Solution();
 
-        // Test case 1: No changes needed
-        String word11 = "test";
-        String word12 = "test";
+        // Test case 1
+        String word11 = "horse";
+        String word12 = "ros";
+        int expected1 = 3;
         int result1 = solution.minDistance(word11, word12);
-        System.out.println(result1 == 0 ? "Test case 1 passed" : "Test case 1 failed");
+        System.out.println("1-" + (expected1 == result1 ? "通过" : "未通过") + "-word1: horse, word2: ros");
 
-        // Test case 2: One character needs to be replaced
-        String word21 = "test";
-        String word22 = "best";
+        // Test case 2
+        String word21 = "intention";
+        String word22 = "execution";
+        int expected2 = 5;
         int result2 = solution.minDistance(word21, word22);
-        System.out.println(result2 == 1 ? "Test case 2 passed" : "Test case 2 failed");
+        System.out.println("2-" + (expected2 == result2 ? "通过" : "未通过") + "-word1: intention, word2: execution");
 
-        // Test case 3: One character needs to be inserted
+        // Test case 3: No changes needed
         String word31 = "test";
-        String word32 = "tests";
+        String word32 = "test";
+        int expected3 = 0;
         int result3 = solution.minDistance(word31, word32);
-        System.out.println(result3 == 1 ? "Test case 3 passed" : "Test case 3 failed");
+        System.out.println("3-" + (expected3 == result3 ? "通过" : "未通过") + "-word1: test, word2: test");
 
-        // Test case 4: One character needs to be deleted
-        String word41 = "tests";
-        String word42 = "test";
+        // Test case 4: One character needs to be replaced
+        String word41 = "test";
+        String word42 = "best";
+        int expected4 = 1;
         int result4 = solution.minDistance(word41, word42);
-        System.out.println(result4 == 1 ? "Test case 4 passed" : "Test case 4 failed");
+        System.out.println("4-" + (expected4 == result4 ? "通过" : "未通过") + "-word1: test, word2: best");
+
+        // Additional Test case 7: Empty string to non-empty string
+        String word71 = "";
+        String word72 = "a";
+        int expected7 = 1;
+        int result7 = solution.minDistance(word71, word72);
+        System.out.println("7-" + (expected7 == result7 ? "通过" : "未通过") + "-word1: \"\", word2: \"a\"");
+
+        // Additional Test case 8: Different strings
+        String word81 = "distance";
+        String word82 = "springbok";
+        int expected8 = 9;
+        int result8 = solution.minDistance(word81, word82);
+        System.out.println("8-" + (expected8 == result8 ? "通过" : "未通过") + "-word1: distance, word2: springbok");
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minDistance(String word1, String word2) {
-            int len1 = word1.length();
-            int len2 = word2.length();
-            int[][] dp = new int[len1 + 1][len2 + 1];
-            for (int i = 0; i <= len1; i++) {
-                dp[i][0] = i;
-            }
-
-            for (int i = 0; i <= len2; i++) {
-                dp[0][i] = i;
-            }
-            for (int i = 1; i <= len1; i++) {
-                for (int j = 1; j <= len2; j++) {
-                    if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
-                        dp[i][j] = dp[i - 1][j - 1];
-                    } else {
-                        dp[i][j] = Math.min(dp[i - 1][j], Math.min(dp[i][j - 1], dp[i - 1][j - 1])) + 1;
-                    }
-                }
-            }
-            return dp[len1][len2];
+            return 1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
