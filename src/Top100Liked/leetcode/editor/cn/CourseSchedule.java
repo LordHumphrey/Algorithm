@@ -42,11 +42,6 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
-
 public class CourseSchedule {
     public static void main(String[] args) {
         Solution solution = new CourseSchedule().new Solution();
@@ -79,32 +74,6 @@ public class CourseSchedule {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean canFinish(int numCourses, int[][] prerequisites) {
-            int length = prerequisites.length;
-            int[] inDegree = new int[numCourses];
-            List<List<Integer>> adj = new ArrayList<>();
-            for (int i = 0; i < numCourses; i++) {
-                adj.add(new ArrayList<>());
-            }
-            for (int[] prerequisite : prerequisites) {
-                inDegree[prerequisite[0]]++;
-                adj.get(prerequisite[1]).add(prerequisite[0]);
-            }
-            Deque<Integer> queue = new ArrayDeque<>();
-            for (int i = 0; i < inDegree.length; i++) {
-                if (inDegree[i] == 0) {
-                    queue.addLast(i);
-                }
-            }
-            while (!queue.isEmpty()) {
-                int first = queue.removeFirst();
-                numCourses--;
-                for (Integer i : adj.get(first)) {
-                    inDegree[i]--;
-                    if (inDegree[i] == 0) {
-                        queue.addLast(i);
-                    }
-                }
-            }
             return numCourses == 0;
         }
     }

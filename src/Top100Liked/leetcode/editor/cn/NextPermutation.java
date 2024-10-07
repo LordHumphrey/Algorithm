@@ -58,44 +58,28 @@ import java.util.Arrays;
 public class NextPermutation {
     public static void main(String[] args) {
         Solution solution = new NextPermutation().new Solution();
-        int[] nums = {1, 2, 3};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
-        nums = new int[] {1, 3, 2};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
-        nums = new int[] {3, 2, 1};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
-        nums = new int[] {1, 2, 3, 8, 5, 7, 6, 4};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
-        nums = new int[] {1, 5, 1};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
-        nums = new int[] {5, 1, 1};
-        solution.nextPermutation(nums);
-        System.out.println(Arrays.toString(nums));
+
+        int[][] testCases = {{1, 2, 3}, {3, 2, 1}, {1, 1, 5}, {1, 3, 2}, {1, 2, 3, 8, 5, 7, 6, 4}, {1, 5, 1}, {5, 1, 1}};
+
+        int[][] expectedResults = {{1, 3, 2}, {1, 2, 3}, {1, 5, 1}, {2, 1, 3}, {1, 2, 3, 8, 6, 4, 5, 7}, {5, 1, 1}, {1, 1, 5}};
+
+        for (int i = 0; i < testCases.length; i++) {
+            solution.nextPermutation(testCases[i]);
+            boolean passed = Arrays.equals(testCases[i], expectedResults[i]);
+            System.out.println((i + 1) + "-" + (passed ? "通过" : "未通过") + "-" + Arrays.toString(testCases[i]));
+        }
     }
     // leetcode submit region begin(Prohibit modification and deletion)
 
     class Solution {
         public void nextPermutation(int[] nums) {
-            int length = nums.length, m = length - 1;
-            while (m >= 1 && nums[m] <= nums[m - 1]) {
-                m--;
-            }
-            if (m == 0) {
-                reverse(nums, m, length - 1);
-            } else {
-                int k = m;
-                while (k < length && nums[k] > nums[m - 1]) {
-                    k++;
-                }
-                System.out.println(k);
-                swap(nums, k - 1, m - 1);
-                reverse(nums, m, length - 1);
-            }
+            return;
+        }
+
+        private void swap(int[] nums, int a, int b) {
+            int tmp = nums[a];
+            nums[a] = nums[b];
+            nums[b] = tmp;
         }
 
         private void reverse(int[] nums, int start, int end) {
@@ -104,12 +88,6 @@ public class NextPermutation {
                 start++;
                 end--;
             }
-        }
-
-        private void swap(int[] nums, int i, int j) {
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)

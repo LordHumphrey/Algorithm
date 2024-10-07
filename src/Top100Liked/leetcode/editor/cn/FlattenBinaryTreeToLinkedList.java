@@ -85,6 +85,7 @@ public class FlattenBinaryTreeToLinkedList {
         TreeNode pre;
 
         public void flatten(TreeNode root) {
+
             return;
         }
     }

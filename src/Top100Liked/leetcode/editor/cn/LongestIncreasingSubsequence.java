@@ -46,43 +46,27 @@
 
 package Top100Liked.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 public class LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestIncreasingSubsequence().new Solution();
 
-        // Test case 1
-        int[] nums1 = {10, 9, 2, 5, 3, 7, 101, 18};
-        int expected1 = 4;
-        int result1 = solution.lengthOfLIS(nums1);
-        System.out.println("Test case 1: " + (expected1 == result1 ? "Passed" : "Failed"));
+        int[][] testCases = {{10, 9, 2, 5, 3, 7, 101, 18}, {0, 1, 0, 3, 2, 3}, {7, 7, 7, 7, 7, 7, 7}, {1, 3, 6, 7, 9, 4, 10, 5, 6}, {2, 2, 2, 2, 2}};
 
-        // Test case 2
-        int[] nums2 = {0, 1, 0, 3, 2, 3};
-        int expected2 = 4;
-        int result2 = solution.lengthOfLIS(nums2);
-        System.out.println("Test case 2: " + (expected2 == result2 ? "Passed" : "Failed"));
+        int[] expectedResults = {4, 4, 1, 6, 1};
 
-        // Test case 3
-        int[] nums3 = {7, 7, 7, 7, 7, 7, 7};
-        int expected3 = 1;
-        int result3 = solution.lengthOfLIS(nums3);
-        System.out.println("Test case 3: " + (expected3 == result3 ? "Passed" : "Failed"));
-
-        // Test case 4
-        int[] nums4 = {1, 3, 6, 7, 9, 4, 10, 5, 6};
-        int expected4 = 6;
-        int result4 = solution.lengthOfLIS(nums4);
-        System.out.println("Test case 4: " + (expected4 == result4 ? "Passed" : "Failed"));
+        for (int i = 0; i < testCases.length; i++) {
+            int result = solution.lengthOfLIS(testCases[i]);
+            boolean passed = result == expectedResults[i];
+            System.out.println((i + 1) + "-" + (passed ? "通过" : "未通过") + "-" + Arrays.toString(testCases[i]));
+        }
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLIS(int[] nums) {
             int length = nums.length, res = 0;
-            if (length == 1) {
-                return 1;
-            }
-
             return res;
         }
     }

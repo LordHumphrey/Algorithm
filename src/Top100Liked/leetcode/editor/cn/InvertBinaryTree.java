@@ -41,9 +41,6 @@
 
 package Top100Liked.leetcode.editor.cn;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 public class InvertBinaryTree {
     public static void main(String[] args) {
         Solution solution = new InvertBinaryTree().new Solution();
@@ -88,23 +85,7 @@ public class InvertBinaryTree {
             if (root == null) {
                 return null;
             }
-            Deque<TreeNode> queue = new ArrayDeque<>();
-            queue.addLast(root);
-            while (!queue.isEmpty()) {
-                int size = queue.size();
-                for (int i = 0; i < size; i++) {
-                    TreeNode first = queue.removeFirst();
-                    if (first.left != null) {
-                        queue.addLast(first.left);
-                    }
-                    if (first.right != null) {
-                        queue.addLast(first.right);
-                    }
-                    TreeNode temp = first.left;
-                    first.left = first.right;
-                    first.right = temp;
-                }
-            }
+
             return root;
         }
     }
